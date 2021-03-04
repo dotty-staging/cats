@@ -155,7 +155,10 @@ ThisBuild / mimaFailOnNoPrevious := false
 def doctestGenTestsDottyCompat(isDotty: Boolean, genTests: Seq[File]): Seq[File] =
   if (isDotty) Nil else genTests
 
+val isDotty = settingKey[Boolean]("")
+
 lazy val commonSettings = Seq(
+  isDotty := scalaVersion.value.startsWith("3"),
   scalacOptions ++= commonScalacOptions(scalaVersion.value, isDotty.value),
   Compile / unmanagedSourceDirectories ++= scalaVersionSpecificFolders("main", baseDirectory.value, scalaVersion.value),
   Test / unmanagedSourceDirectories ++= scalaVersionSpecificFolders("test", baseDirectory.value, scalaVersion.value),
