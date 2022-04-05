@@ -332,7 +332,7 @@ class IndexedStateTSuite extends CatsSuite {
     import cats.implicits.catsStdInstancesForOption
     forAll { (initial: Int) =>
       assert(StateT.fromState(state).run(initial).get === {
-        val (s, Some(result)) = state.run(initial).value
+        val (s, Some(result)) = state.run(initial).value: @unchecked
         (s, result)
       })
     }
