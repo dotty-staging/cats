@@ -17,7 +17,7 @@ object eq {
     Eq.instance((f, g) => A.allValues.forall(a => B.eqv(f(a), g(a))))
 
   implicit def catsLawsEqForFn2[A, B, C](implicit ev: Eq[((A, B)) => C]): Eq[(A, B) => C] =
-    Eq.by((_: (A, B) => C).tupled)
+    Eq.by((_: ((A, B) => C)).tupled)
 
   implicit def catsLawsEqForPartialFunctionExhaustive[A: ExhaustiveCheck, B: Eq]: Eq[PartialFunction[A, B]] =
     Eq.instance((f, g) =>
