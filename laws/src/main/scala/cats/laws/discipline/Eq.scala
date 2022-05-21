@@ -157,7 +157,7 @@ object eq {
    * and comparing the application of the two functions.
    */
   implicit def catsLawsEqForFn2[A, B, C](implicit A: Arbitrary[A], B: Arbitrary[B], C: Eq[C]): Eq[(A, B) => C] =
-    Eq.by((_: (A, B) => C).tupled)(catsLawsEqForFn1[(A, B), C])
+    Eq.by((_: ((A, B) => C)).tupled)(catsLawsEqForFn1[(A, B), C])
 
   /**
    * `Eq[AndThen]` instance, built by piggybacking on [[catsLawsEqForFn1]].
