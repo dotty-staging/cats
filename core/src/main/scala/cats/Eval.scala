@@ -156,7 +156,7 @@ final case class Now[A](value: A) extends Eval.Leaf[A] {
  * garbage collection.
  */
 final class Later[A](f: () => A) extends Eval.Leaf[A] {
-  private[this] var thunk: () => A = f
+  private[this] var thunk: (() => A)|Null = f
 
   // The idea here is that `f` may have captured very large
   // structures, but produce a very small result. In this case, once
@@ -166,7 +166,7 @@ final class Later[A](f: () => A) extends Eval.Leaf[A] {
   // (For situations where `f` is small, but the output will be very
   // expensive to store, consider using `Always`.)
   lazy val value: A = {
-    val result = thunk()
+    val result = thunk.nn()
     thunk = null
     result
   }

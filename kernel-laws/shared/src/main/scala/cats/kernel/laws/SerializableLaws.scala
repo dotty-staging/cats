@@ -51,21 +51,21 @@ object SerializableLaws {
 
         val baos = new ByteArrayOutputStream()
         val oos = new ObjectOutputStream(baos)
-        var ois: ObjectInputStream = null
+        var ois: ObjectInputStream|Null = null
         try {
           oos.writeObject(a)
           oos.close()
           val bais = new ByteArrayInputStream(baos.toByteArray())
           ois = new ObjectInputStream(bais)
-          val a2 = ois.readObject()
-          ois.close()
+          val a2 = ois.nn.readObject()
+          ois.nn.close()
           Result(status = Proof)
         } catch {
           case NonFatal(t) =>
             Result(status = Exception(t))
         } finally {
           oos.close()
-          if (ois != null) ois.close()
+          if (ois != null) ois.nn.close()
         }
       }
     } else Prop(_ => Result(status = Proof))

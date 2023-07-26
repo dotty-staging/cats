@@ -121,7 +121,7 @@ class OptionSuite extends CatsSuite {
   // OptionIdOps tests
 
   test(".some with null argument still results in Some #871") {
-    val s: String = null
+    val s: String|Null = null
     // can't use `s.some ===  (Some(null))` here, because it leads to NullPointerException)
     assert(s.some.exists(_ == null) === true)
   }

@@ -428,7 +428,7 @@ class ParallelSuite
 
   test("IorT leverages parallel effect instances when it exists") {
     case class Marker(value: String) extends java.lang.Exception("marker") {
-      override def fillInStackTrace: Throwable = null
+      override def fillInStackTrace: Throwable|Null = null
     }
 
     def checkMarker[A](f: => A): Option[String] =

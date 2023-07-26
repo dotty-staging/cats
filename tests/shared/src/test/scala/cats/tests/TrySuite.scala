@@ -73,7 +73,7 @@ class TrySuite extends CatsSuite {
       val res = MonadThrow[Try].catchNonFatal(str.toInt)
       // the above should just never cause an uncaught exception
       // this is a somewhat bogus test:
-      assert(res != null)
+//      assert(res != null)
     }
   }
 
@@ -83,23 +83,23 @@ class TrySuite extends CatsSuite {
       val res = MonadThrow[Try].catchNonFatalEval(Eval.later(str.toInt))
       // the above should just never cause an uncaught exception
       // this is a somewhat bogus test:
-      assert(res != null)
+//      assert(res != null)
     }
   }
 
   test("catchOnly works") {
     forAll { (e: Either[String, Int]) =>
       val str = e.fold(identity, _.toString)
-      val res = MonadThrow[Try].catchOnly[NumberFormatException](str.toInt)
+      val res = MonadThrow[Try].catchOnly[NumberFormatException|Null](str.toInt)
       // the above should just never cause an uncaught exception
       // this is a somewhat bogus test:
-      assert(res != null)
+//      assert(res != null)
     }
   }
 
   test("catchOnly catches only a specified type") {
     intercept[NumberFormatException] {
-      MonadThrow[Try].catchOnly[UnsupportedOperationException]("str".toInt)
+      MonadThrow[Try].catchOnly[UnsupportedOperationException|Null]("str".toInt)
     }
   }
 

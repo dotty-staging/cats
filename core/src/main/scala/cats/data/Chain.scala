@@ -83,24 +83,24 @@ sealed abstract class Chain[+A] extends ChainCompat[A] {
     this match {
       case non: Chain.NonEmpty[A] =>
         var c: NonEmpty[A] = non
-        var rights: Chain.NonEmpty[A] = null
-        var result: (A, Chain[A]) = null
-        while (result eq null) {
+        var rights: Chain.NonEmpty[A]|Null = null
+        var result: (A, Chain[A])|Null = null
+        while (result == null) {
           c match {
             case Singleton(a) =>
               val next =
-                if (rights eq null) nil
+                if (rights == null) nil
                 else rights
               result = (a, next)
             case Append(l, r) =>
               rights =
-                if (rights eq null) r
+                if (rights == null) r
                 else Append(r, rights)
               c = l
             case Wrap(seq) =>
               val tail = fromSeq(seq.tail)
               val next =
-                if (rights eq null) tail
+                if (rights == null) tail
                 else {
                   tail match {
                     case non: Chain.NonEmpty[A] => Append(non, rights)
@@ -121,24 +121,24 @@ sealed abstract class Chain[+A] extends ChainCompat[A] {
     this match {
       case non: Chain.NonEmpty[A] =>
         var c: NonEmpty[A] = non
-        var lefts: NonEmpty[A] = null
-        var result: (Chain[A], A) = null
-        while (result eq null) {
+        var lefts: NonEmpty[A]|Null = null
+        var result: (Chain[A], A)|Null = null
+        while (result == null) {
           c match {
             case Singleton(a) =>
               val pre =
-                if (lefts eq null) nil
+                if (lefts == null) nil
                 else lefts
               result = (pre, a)
             case Append(l, r) =>
               lefts =
-                if (lefts eq null) l
+                if (lefts == null) l
                 else Append(lefts, l)
               c = r
             case Wrap(seq) =>
               val init = fromSeq(seq.init)
               val pre =
-                if (lefts eq null) init
+                if (lefts == null) init
                 else {
                   init match {
                     case non: Chain.NonEmpty[A] => Append(lefts, non)
@@ -585,7 +585,7 @@ sealed abstract class Chain[+A] extends ChainCompat[A] {
   final private def foreachUntil(f: A => Boolean): Unit =
     this match {
       case non: Chain.NonEmpty[A] =>
-        var c: Chain.NonEmpty[A] = non
+        var c: Chain.NonEmpty[A]|Null = non
         // a stack of rights
         var rights: List[Chain.NonEmpty[A]] = Nil
 
@@ -1089,23 +1089,23 @@ object Chain extends ChainInstances with ChainCompanionCompat {
       loop(0, as.size).value
     }
 
-  private class ChainIterator[A](self: NonEmpty[A]) extends Iterator[A] {
-    def this(chain: Chain[A]) =
+  private class ChainIterator[A](self: NonEmpty[A]|Null) extends Iterator[A] {
+    def this(chain: Chain[A]|Null) =
       this(chain match {
         case non: NonEmpty[A] => non
-        case _                => null: NonEmpty[A]
+        case _                => null: NonEmpty[A]|Null
       })
 
-    private[this] var c: NonEmpty[A] = self
+    private[this] var c: NonEmpty[A]|Null = self
     private[this] var rights: List[NonEmpty[A]] = Nil
-    private[this] var currentIterator: Iterator[A] = null
+    private[this] var currentIterator: Iterator[A]|Null = null
 
-    override def hasNext: Boolean = (c ne null) || ((currentIterator ne null) && currentIterator.hasNext)
+    override def hasNext: Boolean = (c ne null) || ((currentIterator ne null) && currentIterator.nn.hasNext)
 
     override def next(): A = {
       @tailrec def go: A =
-        if ((currentIterator ne null) && currentIterator.hasNext)
-          currentIterator.next()
+        if ((currentIterator ne null) && currentIterator.nn.hasNext)
+          currentIterator.nn.next()
         else {
           currentIterator = null
 
@@ -1132,7 +1132,7 @@ object Chain extends ChainInstances with ChainCompanionCompat {
                   head
                 }
               currentIterator = seq.iterator
-              currentIterator.next()
+              currentIterator.nn.next()
             case null =>
               throw new java.util.NoSuchElementException("next called on empty iterator")
           }
@@ -1142,23 +1142,23 @@ object Chain extends ChainInstances with ChainCompanionCompat {
     }
   }
 
-  private class ChainReverseIterator[A](self: NonEmpty[A]) extends Iterator[A] {
-    def this(chain: Chain[A]) =
+  private class ChainReverseIterator[A](self: NonEmpty[A]|Null) extends Iterator[A] {
+    def this(chain: Chain[A]|Null) =
       this(chain match {
         case non: NonEmpty[A] => non
-        case _                => null: NonEmpty[A]
+        case _                => null: NonEmpty[A]|Null
       })
 
-    private[this] var c: NonEmpty[A] = self
+    private[this] var c: NonEmpty[A]|Null = self
     private[this] var lefts: List[NonEmpty[A]] = Nil
-    private[this] var currentIterator: Iterator[A] = null
+    private[this] var currentIterator: Iterator[A]|Null = null
 
-    override def hasNext: Boolean = (c ne null) || ((currentIterator ne null) && currentIterator.hasNext)
+    override def hasNext: Boolean = (c ne null) || ((currentIterator ne null) && currentIterator.nn.hasNext)
 
     override def next(): A = {
       @tailrec def go: A =
-        if ((currentIterator ne null) && currentIterator.hasNext)
-          currentIterator.next()
+        if ((currentIterator ne null) && currentIterator.nn.hasNext)
+          currentIterator.nn.next()
         else {
           currentIterator = null
 
@@ -1185,7 +1185,7 @@ object Chain extends ChainInstances with ChainCompanionCompat {
                   head
                 }
               currentIterator = seq.reverseIterator
-              currentIterator.next()
+              currentIterator.nn.next()
             case null =>
               throw new java.util.NoSuchElementException("next called on empty iterator")
           }
