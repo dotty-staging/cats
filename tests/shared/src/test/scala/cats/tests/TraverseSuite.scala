@@ -51,7 +51,7 @@ abstract class TraverseSuite[F[_]: Traverse](name: String)(implicit ArbFInt: Arb
         (s2, b :: acc)
       }
 
-      assert(lhs.map(_.toList) === rhs.map(_.reverse))
+      assert(lhs._2.toList === rhs._2.reverse)
     }
   }
 
