@@ -60,12 +60,12 @@ trait MonadErrorTests[F[_], E] extends ApplicativeErrorTests[F, E] with MonadTes
       def parents: Seq[RuleSet] = Seq(applicativeError[A, B, C], monad[A, B, C])
       def props: Seq[(String, Prop)] =
         Seq(
-          "monadError left zero" -> forAll(laws.monadErrorLeftZero[A, B] _),
-          "monadError ensure consistency" -> forAll(laws.monadErrorEnsureConsistency[A] _),
-          "monadError ensureOr consistency" -> forAll(laws.monadErrorEnsureOrConsistency[A] _),
-          "monadError rethrow attempt" -> forAll(laws.rethrowAttempt[A] _),
+          "monadError left zero" -> forAll(laws.monadErrorLeftZero[A, B]),
+          "monadError ensure consistency" -> forAll(laws.monadErrorEnsureConsistency[A]),
+          "monadError ensureOr consistency" -> forAll(laws.monadErrorEnsureOrConsistency[A]),
+          "monadError rethrow attempt" -> forAll(laws.rethrowAttempt[A]),
           "monadError redeemWith is derived from attempt and flatMap" -> forAll(
-            laws.redeemWithDerivedFromAttemptFlatMap[A, B] _
+            laws.redeemWithDerivedFromAttemptFlatMap[A, B]
           )
         )
     }

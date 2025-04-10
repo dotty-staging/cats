@@ -34,7 +34,7 @@ final case class Kleisli[F[_], -A, B](run: A => F[B]) { self =>
   private[data] def ap[C, AA <: A](f: Kleisli[F, AA, B => C])(implicit F: Apply[F]): Kleisli[F, AA, C] =
     Kleisli(a => F.ap(f.run(a))(run(a)))
 
-  def ap[C, D, AA <: A](f: Kleisli[F, AA, C])(implicit F: Apply[F], ev: B As (C => D)): Kleisli[F, AA, D] = {
+  def ap[C, D, AA <: A](f: Kleisli[F, AA, C])(implicit F: Apply[F], ev: B `As` (C => D)): Kleisli[F, AA, D] = {
     Kleisli { a =>
       val fb: F[C => D] = F.map(run(a))(ev.coerce)
       val fc: F[C] = f.run(a)
@@ -570,8 +570,8 @@ private[data] trait KleisliArrowChoice[F[_]]
   def choose[A, B, C, D](f: Kleisli[F, A, C])(g: Kleisli[F, B, D]): Kleisli[F, Either[A, B], Either[C, D]] =
     Kleisli((fe: Either[A, B]) =>
       fe match {
-        case Left(a)  => F.map(f(a))(Left.apply _)
-        case Right(b) => F.map(g(b))(Right.apply _)
+        case Left(a)  => F.map(f(a))(Left.apply)
+        case Right(b) => F.map(g(b))(Right.apply)
       }
     )
 }
@@ -761,7 +761,7 @@ private trait KleisliAlign[F[_], R] extends Align[Kleisli[F, R, *]] {
     Kleisli(r => FA.align(fa.run(r), fb.run(r)))
 }
 
-private[this] trait KleisliFunctorFilter[F[_], R] extends FunctorFilter[Kleisli[F, R, *]] {
+private trait KleisliFunctorFilter[F[_], R] extends FunctorFilter[Kleisli[F, R, *]] {
 
   def FF: FunctorFilter[F]
 

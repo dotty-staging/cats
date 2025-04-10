@@ -37,7 +37,7 @@ sealed abstract class UnorderedFoldableSuite[F[_]](name: String)(implicit
   def iterator[T](fa: F[T]): Iterator[T]
   def specializedUnorderedFoldMap[A, B: CommutativeMonoid](fa: F[A])(f: A => B): B
 
-  private[this] val instance: UnorderedFoldable[F] =
+  private val instance: UnorderedFoldable[F] =
     new UnorderedFoldable[F] {
       def unorderedFoldMap[A, B: CommutativeMonoid](fa: F[A])(f: A => B): B =
         specializedUnorderedFoldMap(fa)(f)

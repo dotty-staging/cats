@@ -69,19 +69,19 @@ trait TraverseTests[F[_]] extends FunctorTests[F] with FoldableTests[F] with Uno
     def parents: Seq[RuleSet] = Seq(functor[A, B, C], foldable[A, M], unorderedTraverse[A, M, C, X, Y])
     def props: Seq[(String, Prop)] =
       Seq(
-        "traverse identity" -> forAll(laws.traverseIdentity[A, C] _),
-        "traverse sequential composition" -> forAll(laws.traverseSequentialComposition[A, B, C, X, Y] _),
-        "traverse parallel composition" -> forAll(laws.traverseParallelComposition[A, B, X, Y] _),
-        "traverse traverseTap" -> forAll(laws.traverseTap[B, M, X] _),
-        "traverse derive foldMap" -> forAll(laws.foldMapDerived[A, M] _),
-        "traverse order consistency" -> forAll(laws.traverseOrderConsistent[A] _),
-        "traverse ref mapAccumulate" -> forAll(laws.mapAccumulateRef[M, A, C] _),
-        "traverse ref mapWithIndex" -> forAll(laws.mapWithIndexRef[A, C] _),
-        "traverse ref traverseWithIndexM" -> forAll(laws.traverseWithIndexMRef[Option, A, C] _),
-        "traverse ref zipWithIndex" -> forAll(laws.zipWithIndexRef[A, C] _),
-        "traverse ref zipWithLongIndex" -> forAll(laws.zipWithLongIndexRef[A, C] _),
-        "traverse ref mapWithLongIndex" -> forAll(laws.mapWithLongIndexRef[A, C] _),
-        "traverse ref traverseWithLongIndexM" -> forAll(laws.traverseWithLongIndexMRef[Option, A, C] _),
+        "traverse identity" -> forAll(laws.traverseIdentity[A, C]),
+        "traverse sequential composition" -> forAll(laws.traverseSequentialComposition[A, B, C, X, Y]),
+        "traverse parallel composition" -> forAll(laws.traverseParallelComposition[A, B, X, Y]),
+        "traverse traverseTap" -> forAll(laws.traverseTap[B, M, X]),
+        "traverse derive foldMap" -> forAll(laws.foldMapDerived[A, M]),
+        "traverse order consistency" -> forAll(laws.traverseOrderConsistent[A]),
+        "traverse ref mapAccumulate" -> forAll(laws.mapAccumulateRef[M, A, C]),
+        "traverse ref mapWithIndex" -> forAll(laws.mapWithIndexRef[A, C]),
+        "traverse ref traverseWithIndexM" -> forAll(laws.traverseWithIndexMRef[Option, A, C]),
+        "traverse ref zipWithIndex" -> forAll(laws.zipWithIndexRef[A, C]),
+        "traverse ref zipWithLongIndex" -> forAll(laws.zipWithLongIndexRef[A, C]),
+        "traverse ref mapWithLongIndex" -> forAll(laws.mapWithLongIndexRef[A, C]),
+        "traverse ref traverseWithLongIndexM" -> forAll(laws.traverseWithLongIndexMRef[Option, A, C]),
         "traverse ref updated" -> forAll(laws.updatedRef[A, A](_, _, _))
       )
   }

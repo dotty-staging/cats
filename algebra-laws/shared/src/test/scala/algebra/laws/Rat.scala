@@ -121,7 +121,7 @@ object Rat {
     DistributiveLattice.minMax[Rat](using ratAlgebra)
 
   // Is this horrible? Yes. Am I ashamed? Yes.
-  private[this] def genNonZero: Gen[BigInt] =
+  private def genNonZero: Gen[BigInt] =
     arbitrary[BigInt].flatMap { x =>
       if (x != 0) Gen.const(x)
       else genNonZero

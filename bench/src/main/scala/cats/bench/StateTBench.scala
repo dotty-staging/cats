@@ -34,7 +34,7 @@ import org.openjdk.jmh.annotations._
 @BenchmarkMode(Array(Mode.Throughput))
 class StateTBench {
   @Param(Array("10"))
-  var count: Int = _
+  var count: Int = scala.compiletime.uninitialized
 
   @Benchmark
   def single(): Long =

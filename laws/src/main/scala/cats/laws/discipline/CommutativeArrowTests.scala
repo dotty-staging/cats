@@ -62,7 +62,7 @@ trait CommutativeArrowTests[F[_, _]] extends ArrowTests[F] {
   ): RuleSet =
     new DefaultRuleSet(name = "commutative arrow",
                        parent = Some(arrow[A, B, C, D, E, G]),
-                       "arrow commutativity" -> forAll(laws.arrowCommutative[A, B, C, D] _)
+                       "arrow commutativity" -> forAll(laws.arrowCommutative[A, B, C, D])
     )
 }
 

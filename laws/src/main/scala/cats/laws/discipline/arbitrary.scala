@@ -163,7 +163,7 @@ object arbitrary extends ArbitraryInstances0 with ScalaVersionSpecific.Arbitrary
   implicit def catsLawsCogenForValidated[A, B](implicit A: Cogen[A], B: Cogen[B]): Cogen[Validated[A, B]] =
     Cogen((seed, x) => x.fold(A.perturb(seed, _), B.perturb(seed, _)))
 
-  implicit def catsLawsArbitraryForIor[A, B](implicit A: Arbitrary[A], B: Arbitrary[B]): Arbitrary[A Ior B] =
+  implicit def catsLawsArbitraryForIor[A, B](implicit A: Arbitrary[A], B: Arbitrary[B]): Arbitrary[A `Ior` B] =
     Arbitrary(
       Gen.oneOf(A.arbitrary.map(Ior.left),
                 B.arbitrary.map(Ior.right),
@@ -173,7 +173,7 @@ object arbitrary extends ArbitraryInstances0 with ScalaVersionSpecific.Arbitrary
       )
     )
 
-  implicit def catsLawsCogenForIor[A, B](implicit A: Cogen[A], B: Cogen[B]): Cogen[A Ior B] =
+  implicit def catsLawsCogenForIor[A, B](implicit A: Cogen[A], B: Cogen[B]): Cogen[A `Ior` B] =
     Cogen((seed, x) => x.fold(A.perturb(seed, _), B.perturb(seed, _), (a, b) => A.perturb(B.perturb(seed, b), a)))
 
   implicit def catsLawsArbitraryForIorT[F[_], A, B](implicit F: Arbitrary[F[Ior[A, B]]]): Arbitrary[IorT[F, A, B]] =

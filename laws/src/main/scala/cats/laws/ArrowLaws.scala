@@ -47,7 +47,7 @@ trait ArrowLaws[F[_, _]] extends CategoryLaws[F] with StrongLaws[F] {
     f.andThen(g).first[D] <-> (f.first[D].andThen(g.first[D]))
 
   def arrowExchange[A, B, C, D](f: F[A, B], g: C => D): IsEq[F[(A, C), (B, D)]] =
-    (f.first[C].andThen(F.lift((identity[B] _).split(g)))) <-> (F.lift((identity[A] _).split(g)).andThen(f.first[D]))
+    (f.first[C].andThen(F.lift((identity[B]).split(g)))) <-> (F.lift((identity[A]).split(g)).andThen(f.first[D]))
 
   def arrowUnit[A, B, C](f: F[A, B]): IsEq[F[(A, C), B]] =
     (f.first[C].andThen(F.lift(fst[B, C]))) <-> (F.lift(fst[A, C]).andThen(f))

@@ -1292,9 +1292,9 @@ object Chain extends ChainInstances with ChainCompanionCompat {
         case _                => null: NonEmpty[A]
       })
 
-    private[this] var c: NonEmpty[A] = self
-    private[this] var rights: List[NonEmpty[A]] = Nil
-    private[this] var currentIterator: Iterator[A] = null
+    private var c: NonEmpty[A] = self
+    private var rights: List[NonEmpty[A]] = Nil
+    private var currentIterator: Iterator[A] = null
 
     override def hasNext: Boolean = (c ne null) || ((currentIterator ne null) && currentIterator.hasNext)
 
@@ -1345,9 +1345,9 @@ object Chain extends ChainInstances with ChainCompanionCompat {
         case _                => null: NonEmpty[A]
       })
 
-    private[this] var c: NonEmpty[A] = self
-    private[this] var lefts: List[NonEmpty[A]] = Nil
-    private[this] var currentIterator: Iterator[A] = null
+    private var c: NonEmpty[A] = self
+    private var lefts: List[NonEmpty[A]] = Nil
+    private var currentIterator: Iterator[A] = null
 
     override def hasNext: Boolean = (c ne null) || ((currentIterator ne null) && currentIterator.hasNext)
 
@@ -1612,7 +1612,7 @@ sealed abstract private[data] class ChainInstances extends ChainInstances1 {
 
   }
 
-  private[this] val theMonoid: Monoid[Chain[Any]] = new Monoid[Chain[Any]] {
+  private val theMonoid: Monoid[Chain[Any]] = new Monoid[Chain[Any]] {
     def empty: Chain[Any] = Chain.nil
 
     def combine(c: Chain[Any], c2: Chain[Any]): Chain[Any] = Chain.concat(c, c2)

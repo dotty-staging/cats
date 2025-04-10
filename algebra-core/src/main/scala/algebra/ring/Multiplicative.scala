@@ -34,7 +34,7 @@ trait MultiplicativeSemigroup[@sp(Int, Long, Float, Double) A] extends Any with 
     if (n > 0) positivePow(a, n)
     else throw new IllegalArgumentException("Illegal non-positive exponent to pow: %s".format(n))
 
-  protected[this] def positivePow(a: A, n: Int): A = {
+  protected def positivePow(a: A, n: Int): A = {
     @tailrec def loop(b: A, k: Int, extra: A): A =
       if (k == 1) times(b, extra)
       else {

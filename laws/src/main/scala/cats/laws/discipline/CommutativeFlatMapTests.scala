@@ -52,7 +52,7 @@ trait CommutativeFlatMapTests[F[_]] extends FlatMapTests[F] with CommutativeAppl
       def parents: Seq[RuleSet] = Seq(flatMap[A, B, C], commutativeApply[A, B, C])
       def props: Seq[(String, Prop)] =
         Seq(
-          "flatmap commutativity" -> forAll(laws.flatmapCommutative[A, B, C] _)
+          "flatmap commutativity" -> forAll(laws.flatmapCommutative[A, B, C])
         )
     }
 

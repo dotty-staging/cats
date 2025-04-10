@@ -41,11 +41,11 @@ final case class Tuple2K[F[_], G[_], A](first: F[A], second: G[A]) {
 }
 
 object Tuple2K extends Tuple2KInstances {
-  private[this] val _1k = new FunctionK[Tuple2K[Id, Id, *], Id] {
+  private val _1k = new FunctionK[Tuple2K[Id, Id, *], Id] {
     def apply[A](fa: Tuple2K[Id, Id, A]) = fa.first
   }
 
-  private[this] val _2k = new FunctionK[Tuple2K[Id, Id, *], Id] {
+  private val _2k = new FunctionK[Tuple2K[Id, Id, *], Id] {
     def apply[A](fa: Tuple2K[Id, Id, A]) = fa.second
   }
 

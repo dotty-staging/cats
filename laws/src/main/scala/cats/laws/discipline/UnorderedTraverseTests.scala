@@ -55,10 +55,10 @@ trait UnorderedTraverseTests[F[_]] extends UnorderedFoldableTests[F] {
     name = "unorderedTraverse",
     parent = Some(unorderedFoldable[A, B]),
     "unordered traverse sequential composition" -> forAll(
-      laws.unorderedTraverseSequentialComposition[A, B, C, X, Y] _
+      laws.unorderedTraverseSequentialComposition[A, B, C, X, Y]
     ),
-    "unordered traverse parallel composition" -> forAll(laws.unorderedTraverseParallelComposition[A, B, X, Y] _),
-    "unordered traverse consistent with sequence" -> forAll(laws.unorderedSequenceConsistent[B, X] _)
+    "unordered traverse parallel composition" -> forAll(laws.unorderedTraverseParallelComposition[A, B, X, Y]),
+    "unordered traverse consistent with sequence" -> forAll(laws.unorderedSequenceConsistent[B, X])
   )
 }
 

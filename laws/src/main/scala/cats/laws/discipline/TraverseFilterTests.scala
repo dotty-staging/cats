@@ -62,14 +62,14 @@ trait TraverseFilterTests[F[_]] extends FunctorFilterTests[F] {
     new DefaultRuleSet(
       name = "traverseFilter",
       parent = Some(functorFilter[A, B, C]),
-      "traverseFilter identity" -> forAll(laws.traverseFilterIdentity[Option, A] _),
-      "traverseFilter nested composition" -> forAll(laws.traverseFilterComposition[A, B, C, Option, Option] _),
-      "traverseFilter consistent with traverse" -> forAll(laws.traverseFilterConsistentWithTraverse[Option, A] _),
-      "filterA consistent with traverseFilter" -> forAll(laws.filterAConsistentWithTraverseFilter[Option, A] _),
+      "traverseFilter identity" -> forAll(laws.traverseFilterIdentity[Option, A]),
+      "traverseFilter nested composition" -> forAll(laws.traverseFilterComposition[A, B, C, Option, Option]),
+      "traverseFilter consistent with traverse" -> forAll(laws.traverseFilterConsistentWithTraverse[Option, A]),
+      "filterA consistent with traverseFilter" -> forAll(laws.filterAConsistentWithTraverseFilter[Option, A]),
       "traverseEither consistent with traverseFilter" -> forAll(
-        laws.traverseEitherConsistentWithTraverseFilter[Option, F[A], A, B] _
+        laws.traverseEitherConsistentWithTraverseFilter[Option, F[A], A, B]
       ),
-      "traverseCollect reference" -> forAll(laws.traverseCollectRef[Option, A, B] _)
+      "traverseCollect reference" -> forAll(laws.traverseCollectRef[Option, A, B])
     )
   }
 }

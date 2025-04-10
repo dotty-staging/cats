@@ -34,16 +34,16 @@ trait ShortCircuitingTests[F[_]] extends Laws {
     new DefaultRuleSet(
       name = "foldMapKShortCircuiting",
       parent = None,
-      "foldMapK short-circuits if MonoidK[G].combineKEval shorts" -> forAll(laws.foldMapKShortCircuits[A] _),
-      "foldMapK won't short-circuit if MonoidK[G].combineKEval won't" -> forAll(laws.foldMapKWontShortCircuit[A] _)
+      "foldMapK short-circuits if MonoidK[G].combineKEval shorts" -> forAll(laws.foldMapKShortCircuits[A]),
+      "foldMapK won't short-circuit if MonoidK[G].combineKEval won't" -> forAll(laws.foldMapKWontShortCircuit[A])
     )
 
   def traverse[A: Arbitrary](implicit F: Traverse[F], ArbFA: Arbitrary[F[A]], lEq: Eq[Long]): RuleSet =
     new DefaultRuleSet(
       name = "traverseShortCircuiting",
       parent = None,
-      "traverse short-circuits if Applicative[G].map2Eval shorts" -> forAll(laws.traverseShortCircuits[A] _),
-      "traverse won't short-circuit if Applicative[G].map2Eval won't" -> forAll(laws.traverseWontShortCircuit[A] _)
+      "traverse short-circuits if Applicative[G].map2Eval shorts" -> forAll(laws.traverseShortCircuits[A]),
+      "traverse won't short-circuit if Applicative[G].map2Eval won't" -> forAll(laws.traverseWontShortCircuit[A])
     )
 
   def nonEmptyTraverse[A: Arbitrary](implicit TF: NonEmptyTraverse[F], ArbFA: Arbitrary[F[A]], lEq: Eq[Long]): RuleSet =
@@ -51,9 +51,9 @@ trait ShortCircuitingTests[F[_]] extends Laws {
       name = "nonEmptyTraverseShortCircuiting",
       parent = Some(traverse[A]),
       "nonEmptyTraverse short-circuits if Applicative[G].map2Eval shorts" ->
-        forAll(laws.nonEmptyTraverseShortCircuits[A] _),
+        forAll(laws.nonEmptyTraverseShortCircuits[A]),
       "nonEmptyTraverse short-circuits if Applicative[G].map2Eval won't" ->
-        forAll(laws.nonEmptyTraverseWontShortCircuit[A] _)
+        forAll(laws.nonEmptyTraverseWontShortCircuit[A])
     )
 
   def traverseFilter[A: Arbitrary](implicit TF: TraverseFilter[F], ArbFA: Arbitrary[F[A]], lEq: Eq[Long]): RuleSet = {
@@ -62,11 +62,11 @@ trait ShortCircuitingTests[F[_]] extends Laws {
       name = "traverseFilterShortCircuiting",
       parent = Some(traverse[A]),
       "traverseFilter short-circuits if Applicative[G].map2Eval shorts" ->
-        forAll(laws.traverseFilterShortCircuits[A] _),
+        forAll(laws.traverseFilterShortCircuits[A]),
       "traverseFilter short-circuits if Applicative[G].map2Eval won't" ->
-        forAll(laws.traverseFilterWontShortCircuit[A] _),
-      "filterA short-circuits if Applicative[G].map2Eval shorts" -> forAll(laws.filterAShortCircuits[A] _),
-      "filterA short-circuits if Applicative[G].map2Eval won't" -> forAll(laws.filterAWontShortCircuit[A] _)
+        forAll(laws.traverseFilterWontShortCircuit[A]),
+      "filterA short-circuits if Applicative[G].map2Eval shorts" -> forAll(laws.filterAShortCircuits[A]),
+      "filterA short-circuits if Applicative[G].map2Eval won't" -> forAll(laws.filterAWontShortCircuit[A])
     )
   }
 }

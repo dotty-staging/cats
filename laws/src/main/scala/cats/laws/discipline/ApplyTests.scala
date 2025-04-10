@@ -50,11 +50,11 @@ trait ApplyTests[F[_]] extends FunctorTests[F] with SemigroupalTests[F] {
       val parents = Seq(functor[A, B, C], semigroupal[A, B, C])
       val bases: Seq[(String, Laws#RuleSet)] = Seq.empty
       val props = Seq(
-        "apply composition" -> forAll(laws.applyComposition[A, B, C] _),
-        "map2/product-map consistency" -> forAll(laws.map2ProductConsistency[A, B, C] _),
-        "map2/map2Eval consistency" -> forAll(laws.map2EvalConsistency[A, B, C] _),
-        "productR consistent map2" -> forAll(laws.productRConsistency[A, C] _),
-        "productL consistent map2" -> forAll(laws.productLConsistency[A, C] _)
+        "apply composition" -> forAll(laws.applyComposition[A, B, C]),
+        "map2/product-map consistency" -> forAll(laws.map2ProductConsistency[A, B, C]),
+        "map2/map2Eval consistency" -> forAll(laws.map2EvalConsistency[A, B, C]),
+        "productR consistent map2" -> forAll(laws.productRConsistency[A, C]),
+        "productL consistent map2" -> forAll(laws.productLConsistency[A, C])
       )
     }
 }

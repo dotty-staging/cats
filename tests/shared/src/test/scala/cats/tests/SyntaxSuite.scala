@@ -716,7 +716,7 @@ object SyntaxSuite {
     import cats.data.Ior
     val fa = mock[F[A]]
     val fb = mock[F[B]]
-    val f = mock[A Ior B => C]
+    val f = mock[A `Ior` B => C]
     val f2 = mock[(Option[A], Option[B]) => C]
     val f3 = mock[(A, A) => A]
     val a = mock[A]

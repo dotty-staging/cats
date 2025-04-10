@@ -65,7 +65,7 @@ class UnitAlgebra extends BoundedSemilattice[Unit] with CommutativeGroup[Unit] {
   def combine(x: Unit, y: Unit): Unit = ()
   override def remove(x: Unit, y: Unit): Unit = ()
   def inverse(x: Unit): Unit = ()
-  override protected[this] def repeatedCombineN(a: Unit, n: Int): Unit = ()
+  override protected def repeatedCombineN(a: Unit, n: Int): Unit = ()
   override def combineAllOption(as: IterableOnce[Unit]): Option[Unit] =
     if (as.iterator.isEmpty) None else Some(())
 }

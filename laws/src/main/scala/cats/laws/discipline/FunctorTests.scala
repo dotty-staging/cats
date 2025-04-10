@@ -40,9 +40,9 @@ trait FunctorTests[F[_]] extends InvariantTests[F] {
     new DefaultRuleSet(
       name = "functor",
       parent = Some(invariant[A, B, C]),
-      "covariant identity" -> forAll(laws.covariantIdentity[A] _),
-      "covariant composition" -> forAll(laws.covariantComposition[A, B, C] _),
-      "mapOrKeepToMapEquivalence" -> forAll(laws.mapOrKeepToMapEquivalence[A, A] _)
+      "covariant identity" -> forAll(laws.covariantIdentity[A]),
+      "covariant composition" -> forAll(laws.covariantComposition[A, B, C]),
+      "mapOrKeepToMapEquivalence" -> forAll(laws.mapOrKeepToMapEquivalence[A, A])
     )
 }
 

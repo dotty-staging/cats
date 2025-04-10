@@ -111,7 +111,7 @@ trait MapInstances extends cats.kernel.instances.MapInstances {
 
       def functor: Functor[Map[K, *]] = this
 
-      def align[A, B](fa: Map[K, A], fb: Map[K, B]): Map[K, A Ior B] =
+      def align[A, B](fa: Map[K, A], fb: Map[K, B]): Map[K, A `Ior` B] =
         alignWith(fa, fb)(identity)
 
       override def alignWith[A, B, C](fa: Map[K, A], fb: Map[K, B])(f: Ior[A, B] => C): Map[K, C] = {

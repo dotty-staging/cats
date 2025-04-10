@@ -34,10 +34,10 @@ trait DeferTests[F[_]] extends Laws {
     new DefaultRuleSet(
       name = "defer",
       parent = None,
-      "defer Identity" -> forAll(laws.deferIdentity[A] _),
-      "defer does not evaluate" -> forAll(laws.deferDoesNotEvaluate[A] _),
-      "defer is stack safe" -> forAll(laws.deferIsStackSafe[A] _),
-      "defer matches fix" -> forAll(laws.deferMatchesFix[A] _)
+      "defer Identity" -> forAll(laws.deferIdentity[A]),
+      "defer does not evaluate" -> forAll(laws.deferDoesNotEvaluate[A]),
+      "defer is stack safe" -> forAll(laws.deferIsStackSafe[A]),
+      "defer matches fix" -> forAll(laws.deferMatchesFix[A])
     )
 }
 

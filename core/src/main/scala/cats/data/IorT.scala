@@ -524,8 +524,8 @@ abstract private[data] class IorTInstances extends IorTInstances1 {
           def apply[A](ff: IorT[P.F, E, A]): IorT[M, E, A] = IorT(P.sequential(ff.value))
         }
 
-      private[this] val FA: Applicative[P.F] = P.applicative
-      private[this] val IorA: Applicative[Ior[E, *]] = Parallel[Ior[E, *], Ior[E, *]].applicative
+      private val FA: Applicative[P.F] = P.applicative
+      private val IorA: Applicative[Ior[E, *]] = Parallel[Ior[E, *], Ior[E, *]].applicative
 
       val applicative: Applicative[IorT[P.F, E, *]] = new Applicative[IorT[P.F, E, *]] {
         def pure[A](a: A): IorT[P.F, E, A] = IorT.pure(a)(FA)
@@ -556,8 +556,8 @@ abstract private[data] class IorTInstances extends IorTInstances1 {
           def apply[A](ff: IorT[P.F, E, A]): IorT[M, E, A] = IorT(P.sequential(ff.value))
         }
 
-      private[this] val FA: Applicative[P.F] = P.applicative
-      private[this] val IorA: Applicative[Ior[E, *]] =
+      private val FA: Applicative[P.F] = P.applicative
+      private val IorA: Applicative[Ior[E, *]] =
         Ior.catsDataMonadErrorForIor // See https://github.com/typelevel/cats/issues/3783
 
       val applicative: Applicative[IorT[P.F, E, *]] = new Applicative[IorT[P.F, E, *]] {
@@ -598,8 +598,8 @@ abstract private[data] class IorTInstances1 extends IorTInstances2 {
   ): Parallel.Aux[IorT[F0, E, *], IorT[F0, E, *]] =
     new Parallel[IorT[F0, E, *]] {
       type F[x] = IorT[F0, E, x]
-      private[this] val identityK: IorT[F0, E, *] ~> IorT[F0, E, *] = FunctionK.id
-      private[this] val underlyingParallel: Parallel.Aux[Ior[E, *], Ior[E, *]] =
+      private val identityK: IorT[F0, E, *] ~> IorT[F0, E, *] = FunctionK.id
+      private val underlyingParallel: Parallel.Aux[Ior[E, *], Ior[E, *]] =
         Ior.catsDataParallelForIor[E]
 
       def parallel: IorT[F0, E, *] ~> IorT[F0, E, *] = identityK

@@ -146,7 +146,7 @@ trait SemigroupK[F[_]] extends Serializable { self =>
   /**
    * Return `a` combined with itself more than once.
    */
-  protected[this] def repeatedCombineNK[A](a: F[A], n: Int): F[A] = {
+  protected def repeatedCombineNK[A](a: F[A], n: Int): F[A] = {
     @tailrec def loop(b: F[A], k: Int, extra: F[A]): F[A] =
       if (k == 1) combineK(b, extra)
       else {

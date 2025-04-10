@@ -687,7 +687,7 @@ final case class NonEmptyList[+A](head: A, tail: List[A]) extends NonEmptyCollec
    * }}}
    */
   def toNem[T, U](implicit ev: A <:< (T, U), order: Order[T]): NonEmptyMap[T, U] =
-    NonEmptyMap.fromMapUnsafe(SortedMap(toList.map(ev): _*)(order.toOrdering))
+    NonEmptyMap.fromMapUnsafe(SortedMap(toList.map(ev)*)(order.toOrdering))
 
   /**
    * Creates new `NonEmptySet`, similarly to List#toSet from scala standard library.
@@ -700,7 +700,7 @@ final case class NonEmptyList[+A](head: A, tail: List[A]) extends NonEmptyCollec
    * }}}
    */
   def toNes[B >: A](implicit order: Order[B]): NonEmptySet[B] =
-    NonEmptySet.of(head, tail: _*)
+    NonEmptySet.of(head, tail*)
 
   /**
    * Creates new `NonEmptyVector`, similarly to List#toVector from scala standard library.

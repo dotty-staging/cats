@@ -36,10 +36,10 @@ trait OrderTests[A] extends PartialOrderTests[A] {
     new DefaultRuleSet(
       "order",
       Some(partialOrder),
-      "totality" -> forAll(laws.totality _),
-      "compare" -> forAll(laws.compare _),
-      "max" -> forAll(laws.max _),
-      "min" -> forAll(laws.min _)
+      "totality" -> forAll(laws.totality),
+      "compare" -> forAll(laws.compare),
+      "max" -> forAll(laws.max),
+      "min" -> forAll(laws.min)
     )
 
   @deprecated("use `order` without `Eq` parameters", "2.12.1")

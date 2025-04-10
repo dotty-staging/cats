@@ -149,8 +149,8 @@ object Align extends ScalaVersionSpecificAlignInstances {
 
   private[cats] def alignWithIterator[A, B, C](fa: Iterable[A], fb: Iterable[B])(f: Ior[A, B] => C): Iterator[C] =
     new Iterator[C] {
-      private[this] val iterA = fa.iterator
-      private[this] val iterB = fb.iterator
+      private val iterA = fa.iterator
+      private val iterB = fb.iterator
       def hasNext: Boolean = iterA.hasNext || iterB.hasNext
       def next(): C =
         f(

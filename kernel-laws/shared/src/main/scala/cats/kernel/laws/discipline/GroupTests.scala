@@ -35,9 +35,9 @@ trait GroupTests[A] extends MonoidTests[A] {
     new DefaultRuleSet(
       "group",
       Some(monoid),
-      "left inverse" -> forAll(laws.leftInverse _),
-      "right inverse" -> forAll(laws.rightInverse _),
-      "consistent inverse" -> forAll(laws.consistentInverse _)
+      "left inverse" -> forAll(laws.leftInverse),
+      "right inverse" -> forAll(laws.rightInverse),
+      "consistent inverse" -> forAll(laws.consistentInverse)
     )
 
 }

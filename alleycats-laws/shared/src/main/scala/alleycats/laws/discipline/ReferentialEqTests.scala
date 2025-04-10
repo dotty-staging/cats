@@ -36,9 +36,9 @@ trait ReferentialEqTests[A] extends Laws {
     new DefaultRuleSet(
       "referentialEq",
       None,
-      "reflexivity eq" -> forAll(laws.reflexivityEq _),
-      "symmetry eq" -> forAll(laws.symmetryEq _),
-      "transitivity eq" -> forAll(laws.transitivityEq _)
+      "reflexivity eq" -> forAll(laws.reflexivityEq),
+      "symmetry eq" -> forAll(laws.symmetryEq),
+      "transitivity eq" -> forAll(laws.transitivityEq)
     )
   }
 }

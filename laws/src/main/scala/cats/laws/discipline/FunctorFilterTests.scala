@@ -45,12 +45,12 @@ trait FunctorFilterTests[F[_]] extends Laws {
     new DefaultRuleSet(
       name = "functorFilter",
       parent = None,
-      "mapFilter composition" -> forAll(laws.mapFilterComposition[A, B, C] _),
-      "mapFilter map consistency" -> forAll(laws.mapFilterMapConsistency[A, B] _),
-      "collect mapFilter consistency" -> forAll(laws.collectConsistentWithMapFilter[A, B] _),
-      "flattenOption mapFilter consistency" -> forAll(laws.flattenOptionConsistentWithMapFilter[A] _),
-      "filter mapFilter consistency" -> forAll(laws.filterConsistentWithMapFilter[A] _),
-      "filterNot mapFilter consistency" -> forAll(laws.filterNotConsistentWithFilter[A] _)
+      "mapFilter composition" -> forAll(laws.mapFilterComposition[A, B, C]),
+      "mapFilter map consistency" -> forAll(laws.mapFilterMapConsistency[A, B]),
+      "collect mapFilter consistency" -> forAll(laws.collectConsistentWithMapFilter[A, B]),
+      "flattenOption mapFilter consistency" -> forAll(laws.flattenOptionConsistentWithMapFilter[A]),
+      "filter mapFilter consistency" -> forAll(laws.filterConsistentWithMapFilter[A]),
+      "filterNot mapFilter consistency" -> forAll(laws.filterNotConsistentWithFilter[A])
     )
 }
 

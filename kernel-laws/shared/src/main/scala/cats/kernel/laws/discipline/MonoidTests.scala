@@ -37,12 +37,12 @@ trait MonoidTests[A] extends SemigroupTests[A] {
     new DefaultRuleSet(
       "monoid",
       Some(semigroup),
-      "left identity" -> forAll(laws.leftIdentity _),
-      "right identity" -> forAll(laws.rightIdentity _),
-      "combine all" -> forAll(laws.combineAll _),
+      "left identity" -> forAll(laws.leftIdentity),
+      "right identity" -> forAll(laws.rightIdentity),
+      "combine all" -> forAll(laws.combineAll),
       "collect0" -> (laws.collect0: Prop),
       "is id" -> forAll((a: A) => laws.isId(a, eqA)),
-      "repeat0" -> forAll(laws.repeat0 _)
+      "repeat0" -> forAll(laws.repeat0)
     )
 
 }

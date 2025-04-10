@@ -378,7 +378,7 @@ final class NonEmptySeq[+A] private (val toSeq: Seq[A]) extends AnyVal with NonE
    * }}}
    */
   final def toNem[T, U](implicit ev: A <:< (T, U), order: Order[T]): NonEmptyMap[T, U] =
-    NonEmptyMap.fromMapUnsafe(SortedMap(toSeq.map(ev): _*)(order.toOrdering))
+    NonEmptyMap.fromMapUnsafe(SortedMap(toSeq.map(ev)*)(order.toOrdering))
 
   /**
    * Creates new `NonEmptySet`, similarly to List#toSet from scala standard library.
@@ -392,7 +392,7 @@ final class NonEmptySeq[+A] private (val toSeq: Seq[A]) extends AnyVal with NonE
    * }}}
    */
   final def toNes[B >: A](implicit order: Order[B]): NonEmptySet[B] =
-    NonEmptySet.of(head, tail: _*)
+    NonEmptySet.of(head, tail*)
 }
 
 @suppressUnusedImportWarningForScalaVersionSpecific

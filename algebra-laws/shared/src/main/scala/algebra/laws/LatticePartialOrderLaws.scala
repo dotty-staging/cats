@@ -80,13 +80,13 @@ trait LatticePartialOrderLaws[A] extends Laws {
       "lteqv+one" -> forAll { (x: A) => x ?<= A.one }
     )
 
-  def boundedBelowLatticePartialOrder(implicit A: Lattice[A] with BoundedJoinSemilattice[A], P: PartialOrder[A]) =
+  def boundedBelowLatticePartialOrder(implicit A: Lattice[A] & BoundedJoinSemilattice[A], P: PartialOrder[A]) =
     new LatticePartialOrderProperties(
       name = "boundedBelowLatticePartialOrder",
       parents = Seq(boundedJoinSemilatticePartialOrder, latticePartialOrder)
     )
 
-  def boundedAboveLatticePartialOrder(implicit A: Lattice[A] with BoundedMeetSemilattice[A], P: PartialOrder[A]) =
+  def boundedAboveLatticePartialOrder(implicit A: Lattice[A] & BoundedMeetSemilattice[A], P: PartialOrder[A]) =
     new LatticePartialOrderProperties(
       name = "boundedAboveLatticePartialOrder",
       parents = Seq(boundedMeetSemilatticePartialOrder, latticePartialOrder)

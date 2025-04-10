@@ -272,7 +272,7 @@ abstract private[data] class AndThenInstances0 extends AndThenInstances1 {
   implicit def catsDataMonadForAndThen[T]: Monad[AndThen[T, *]] =
     new Monad[AndThen[T, *]] {
       // Piggybacking on the instance for Function1
-      private[this] val fn1 = instances.all.catsStdMonadForFunction1[T]
+      private val fn1 = instances.all.catsStdMonadForFunction1[T]
 
       def pure[A](x: A): AndThen[T, A] =
         AndThen(fn1.pure[A](x))
@@ -293,7 +293,7 @@ abstract private[data] class AndThenInstances0 extends AndThenInstances1 {
   implicit def catsDataContravariantMonoidalForAndThen[R: Monoid]: ContravariantMonoidal[AndThen[*, R]] =
     new ContravariantMonoidal[AndThen[*, R]] {
       // Piggybacking on the instance for Function1
-      private[this] val fn1 = instances.all.catsStdContravariantMonoidalForFunction1[R]
+      private val fn1 = instances.all.catsStdContravariantMonoidalForFunction1[R]
 
       def unit: AndThen[Unit, R] =
         AndThen(fn1.unit)
@@ -313,7 +313,7 @@ abstract private[data] class AndThenInstances0 extends AndThenInstances1 {
   implicit val catsDataArrowForAndThen: ArrowChoice[AndThen] & CommutativeArrow[AndThen] =
     new ArrowChoice[AndThen] with CommutativeArrow[AndThen] {
       // Piggybacking on the instance for Function1
-      private[this] val fn1 = instances.all.catsStdInstancesForFunction1
+      private val fn1 = instances.all.catsStdInstancesForFunction1
 
       def choose[A, B, C, D](f: AndThen[A, C])(g: AndThen[B, D]): AndThen[Either[A, B], Either[C, D]] =
         AndThen(fn1.choose(f)(g))

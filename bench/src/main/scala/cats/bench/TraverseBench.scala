@@ -38,16 +38,16 @@ class TraverseBench {
   val chainT: Traverse[Chain] = Traverse[Chain]
 
   // the unit of CPU work per iteration
-  private[this] val Work: Long = 10
+  private val Work: Long = 10
 
-  private[this] case object Failure extends RuntimeException
+  private case object Failure extends RuntimeException
 
   @Param(Array("10000"))
-  var length: Int = _
+  var length: Int = scala.compiletime.uninitialized
 
-  var list: List[Int] = _
-  var vector: Vector[Int] = _
-  var chain: Chain[Int] = _
+  var list: List[Int] = scala.compiletime.uninitialized
+  var vector: Vector[Int] = scala.compiletime.uninitialized
+  var chain: Chain[Int] = scala.compiletime.uninitialized
 
   @Setup
   def setup(): Unit = {

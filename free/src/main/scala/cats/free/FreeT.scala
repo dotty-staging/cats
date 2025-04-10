@@ -296,7 +296,7 @@ sealed abstract private[free] class FreeTInstances extends FreeTInstances0 {
     new MonadError[FreeT[S, M, *], E] with FreeTMonad[S, M] {
       override def M: Applicative[M] = E
 
-      private[this] val RealDefer = catsDeferForFreeT[S, M]
+      private val RealDefer = catsDeferForFreeT[S, M]
 
       /*
        * Quick explanation... The previous version of this function (retained above for

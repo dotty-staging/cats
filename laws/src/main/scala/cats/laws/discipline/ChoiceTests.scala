@@ -42,7 +42,7 @@ trait ChoiceTests[F[_, _]] extends CategoryTests[F] {
     new DefaultRuleSet(
       name = "choice",
       parent = Some(category[A, B, C, D]),
-      "choice composition distributivity" -> forAll(laws.choiceCompositionDistributivity[A, B, C, D] _)
+      "choice composition distributivity" -> forAll(laws.choiceCompositionDistributivity[A, B, C, D])
     )
 }
 

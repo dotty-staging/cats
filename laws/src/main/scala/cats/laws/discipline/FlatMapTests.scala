@@ -54,11 +54,11 @@ trait FlatMapTests[F[_]] extends ApplyTests[F] {
     new DefaultRuleSet(
       name = "flatMap",
       parent = Some(apply[A, B, C]),
-      "flatMap associativity" -> forAll(laws.flatMapAssociativity[A, B, C] _),
-      "flatMap consistent apply" -> forAll(laws.flatMapConsistentApply[A, B] _),
-      "flatMap from tailRecM consistency" -> forAll(laws.flatMapFromTailRecMConsistency[A, B] _),
-      "mproduct consistent flatMap" -> forAll(laws.mproductConsistency[A, B] _),
-      "tailRecM consistent flatMap" -> forAll(laws.tailRecMConsistentFlatMap[A] _)
+      "flatMap associativity" -> forAll(laws.flatMapAssociativity[A, B, C]),
+      "flatMap consistent apply" -> forAll(laws.flatMapConsistentApply[A, B]),
+      "flatMap from tailRecM consistency" -> forAll(laws.flatMapFromTailRecMConsistency[A, B]),
+      "mproduct consistent flatMap" -> forAll(laws.mproductConsistency[A, B]),
+      "tailRecM consistent flatMap" -> forAll(laws.tailRecMConsistentFlatMap[A])
     )
   }
 }

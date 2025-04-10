@@ -196,7 +196,7 @@ trait ApplicativeError[F[_], E] extends Applicative[F] {
    * having originally been included in the `MonadError` API and syntax.
    */
   def adaptError[A](fa: F[A])(pf: PartialFunction[E, E]): F[A] =
-    recoverWith(fa)(pf.andThen(raiseError[A] _))
+    recoverWith(fa)(pf.andThen(raiseError[A]))
 
   /**
    * Returns a new value that transforms the result of the source,

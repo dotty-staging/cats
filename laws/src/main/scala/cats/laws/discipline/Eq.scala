@@ -50,31 +50,31 @@ object eq {
     Eq.by(identity[A => B])
 
   implicit def catsLawsEqForShow[A](implicit ev: Eq[A => String]): Eq[Show[A]] =
-    Eq.by(showA => showA.show _)
+    Eq.by(showA => showA.show)
 
   implicit def catsLawsEqForEq[A](implicit ev: Eq[(A, A) => Boolean]): Eq[Eq[A]] =
-    Eq.by(e => e.eqv _)
+    Eq.by(e => e.eqv)
 
   implicit def catsLawsEqForEquiv[A](implicit ev: Eq[(A, A) => Boolean]): Eq[Equiv[A]] =
-    Eq.by(e => e.equiv _)
+    Eq.by(e => e.equiv)
 
   implicit def catsLawsEqForPartialOrder[A](implicit ev: Eq[(A, A) => Option[Int]]): Eq[PartialOrder[A]] =
-    Eq.by(o => o.tryCompare _)
+    Eq.by(o => o.tryCompare)
 
   implicit def catsLawsEqForPartialOrdering[A](implicit ev: Eq[(A, A) => Option[Int]]): Eq[PartialOrdering[A]] =
-    Eq.by(o => o.tryCompare _)
+    Eq.by(o => o.tryCompare)
 
   implicit def catsLawsEqForOrder[A](implicit ev: Eq[(A, A) => Int]): Eq[Order[A]] =
-    Eq.by(o => o.compare _)
+    Eq.by(o => o.compare)
 
   implicit def catsLawsEqForOrdering[A](implicit ev: Eq[(A, A) => Int]): Eq[Ordering[A]] =
-    Eq.by(o => o.compare _)
+    Eq.by(o => o.compare)
 
   implicit def catsLawsEqForHash[A](implicit ev: Eq[A => Int]): Eq[Hash[A]] =
-    Eq.by(h => h.hash _)
+    Eq.by(h => h.hash)
 
   implicit def catsLawsEqForSemigroup[A](implicit ev: Eq[(A, A) => A]): Eq[Semigroup[A]] =
-    Eq.by(s => s.combine _)
+    Eq.by(s => s.combine)
 
   implicit def catsLawsEqForCommutativeSemigroup[A](implicit
     eqA: Eq[A],
@@ -174,7 +174,7 @@ object eq {
    * Create an approximation of `Eq[Show[A]]` by using catsLawsEqForFn1[A, String]
    */
   implicit def catsLawsEqForShow[A: Arbitrary]: Eq[Show[A]] =
-    Eq.by(showA => showA.show _)
+    Eq.by(showA => showA.show)
 
   /**
    * Create an approximate Eq instance for some type A, by comparing

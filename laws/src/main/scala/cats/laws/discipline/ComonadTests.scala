@@ -46,14 +46,14 @@ trait ComonadTests[F[_]] extends CoflatMapTests[F] {
     new DefaultRuleSet(
       name = "comonad",
       parent = Some(coflatMap[A, B, C]),
-      "extractCoflattenIdentity" -> forAll(laws.extractCoflattenIdentity[A] _),
-      "mapCoflattenIdentity" -> forAll(laws.mapCoflattenIdentity[A] _),
-      "coflattenThroughMap" -> forAll(laws.coflattenThroughMap[A] _),
-      "coflattenCoherence" -> forAll(laws.coflattenCoherence[A, B] _),
-      "coflatMapIdentity" -> forAll(laws.coflatMapIdentity[A, B] _),
-      "mapCoflatMapCoherence" -> forAll(laws.mapCoflatMapCoherence[A, B] _),
-      "comonad left identity" -> forAll(laws.comonadLeftIdentity[A] _),
-      "comonad right identity" -> forAll(laws.comonadRightIdentity[A, B] _)
+      "extractCoflattenIdentity" -> forAll(laws.extractCoflattenIdentity[A]),
+      "mapCoflattenIdentity" -> forAll(laws.mapCoflattenIdentity[A]),
+      "coflattenThroughMap" -> forAll(laws.coflattenThroughMap[A]),
+      "coflattenCoherence" -> forAll(laws.coflattenCoherence[A, B]),
+      "coflatMapIdentity" -> forAll(laws.coflatMapIdentity[A, B]),
+      "mapCoflatMapCoherence" -> forAll(laws.mapCoflatMapCoherence[A, B]),
+      "comonad left identity" -> forAll(laws.comonadLeftIdentity[A]),
+      "comonad right identity" -> forAll(laws.comonadRightIdentity[A, B])
     )
 }
 

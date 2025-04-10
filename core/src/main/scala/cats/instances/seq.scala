@@ -66,7 +66,7 @@ trait SeqInstances extends cats.kernel.instances.SeqInstances {
         if (fb.isEmpty) Seq.empty // do O(1) work if either is empty
         else fa.flatMap(a => fb.map(b => f(a, b))) // already O(1) if fa is empty
 
-      private[this] val evalEmpty: Eval[Seq[Nothing]] = Eval.now(Seq.empty)
+      private val evalEmpty: Eval[Seq[Nothing]] = Eval.now(Seq.empty)
 
       override def map2Eval[A, B, Z](fa: Seq[A], fb: Eval[Seq[B]])(f: (A, B) => Z): Eval[Seq[Z]] =
         if (fa.isEmpty) evalEmpty // no need to evaluate fb
@@ -178,7 +178,7 @@ trait SeqInstances extends cats.kernel.instances.SeqInstances {
 
       def functor: Functor[Seq] = this
 
-      def align[A, B](fa: Seq[A], fb: Seq[B]): Seq[A Ior B] = {
+      def align[A, B](fa: Seq[A], fb: Seq[B]): Seq[A `Ior` B] = {
         val aLarger = fa.size >= fb.size
         if (aLarger) {
           cats.compat.Seq.zipWith(fa, fb)(Ior.both) ++ fa.drop(fb.size).map(Ior.left)

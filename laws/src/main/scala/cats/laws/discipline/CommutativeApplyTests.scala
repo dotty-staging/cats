@@ -52,7 +52,7 @@ trait CommutativeApplyTests[F[_]] extends ApplyTests[F] {
       def parents: Seq[RuleSet] = Seq(apply[A, B, C])
       def props: Seq[(String, Prop)] =
         Seq(
-          "apply commutativity" -> forAll(laws.applyCommutative[A, B, C] _)
+          "apply commutativity" -> forAll(laws.applyCommutative[A, B, C])
         )
     }
 

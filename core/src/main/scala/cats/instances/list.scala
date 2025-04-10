@@ -63,7 +63,7 @@ trait ListInstances extends cats.kernel.instances.ListInstances {
         if (fb.isEmpty) Nil // do O(1) work if fb is empty
         else fa.flatMap(a => fb.map(b => f(a, b))) // already O(1) if fa is empty
 
-      private[this] val evalNil: Eval[List[Nothing]] = Eval.now(Nil)
+      private val evalNil: Eval[List[Nothing]] = Eval.now(Nil)
 
       override def map2Eval[A, B, Z](fa: List[A], fb: Eval[List[B]])(f: (A, B) => Z): Eval[List[Z]] =
         if (fa.isEmpty) evalNil // no need to evaluate fb
@@ -177,7 +177,7 @@ trait ListInstances extends cats.kernel.instances.ListInstances {
 
       def functor: Functor[List] = this
 
-      def align[A, B](fa: List[A], fb: List[B]): List[A Ior B] =
+      def align[A, B](fa: List[A], fb: List[B]): List[A `Ior` B] =
         alignWith(fa, fb)(identity)
 
       override def alignWith[A, B, C](fa: List[A], fb: List[B])(f: Ior[A, B] => C): List[C] = {
@@ -269,7 +269,7 @@ trait ListInstances extends cats.kernel.instances.ListInstances {
         fa.collectFirst(Function.unlift(f))
 
       override def unit: List[Unit] = _unit
-      private[this] val _unit: List[Unit] = () :: Nil
+      private val _unit: List[Unit] = () :: Nil
 
       override def void[A](fa: List[A]): List[Unit] = {
         @tailrec

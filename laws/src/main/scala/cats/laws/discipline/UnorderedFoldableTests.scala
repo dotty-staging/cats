@@ -44,16 +44,16 @@ trait UnorderedFoldableTests[F[_]] extends Laws {
     new DefaultRuleSet(
       name = "unorderedFoldable",
       parent = None,
-      "unorderedFold consistent with unorderedFoldMap" -> forAll(laws.unorderedFoldConsistentWithUnorderedFoldMap[A] _),
-      "unorderedFoldMapA identity" -> forAll(laws.unorderedFoldMapAIdentity[A, B] _),
-      "forall consistent with exists" -> forAll(laws.forallConsistentWithExists[A] _),
-      "forall true if empty" -> forAll(laws.forallEmpty[A] _),
-      "nonEmpty reference" -> forAll(laws.nonEmptyRef[A] _),
-      "exists is lazy" -> forAll(laws.existsLazy[A] _),
-      "forall is lazy" -> forAll(laws.forallLazy[A] _),
-      "contains consistent with exists" -> forAll(laws.containsConsistentWithExists[A] _),
-      "contains consistent with forall" -> forAll(laws.containsConsistentWithForall[A] _),
-      "contains all elements from itself" -> forAll(laws.containsAllElementsFromItself[A] _)
+      "unorderedFold consistent with unorderedFoldMap" -> forAll(laws.unorderedFoldConsistentWithUnorderedFoldMap[A]),
+      "unorderedFoldMapA identity" -> forAll(laws.unorderedFoldMapAIdentity[A, B]),
+      "forall consistent with exists" -> forAll(laws.forallConsistentWithExists[A]),
+      "forall true if empty" -> forAll(laws.forallEmpty[A]),
+      "nonEmpty reference" -> forAll(laws.nonEmptyRef[A]),
+      "exists is lazy" -> forAll(laws.existsLazy[A]),
+      "forall is lazy" -> forAll(laws.forallLazy[A]),
+      "contains consistent with exists" -> forAll(laws.containsConsistentWithExists[A]),
+      "contains consistent with forall" -> forAll(laws.containsConsistentWithForall[A]),
+      "contains all elements from itself" -> forAll(laws.containsAllElementsFromItself[A])
     )
 }
 

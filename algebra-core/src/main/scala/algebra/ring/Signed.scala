@@ -156,7 +156,7 @@ object Signed extends SignedFunctions[Signed] {
     def apply(i: Int): Sign =
       if (i == 0) Zero else if (i > 0) Positive else Negative
 
-    private val instance: CommutativeMonoid[Sign] with MultiplicativeCommutativeMonoid[Sign] with Eq[Sign] =
+    private val instance: CommutativeMonoid[Sign] & MultiplicativeCommutativeMonoid[Sign] & Eq[Sign] =
       new CommutativeMonoid[Sign] with MultiplicativeCommutativeMonoid[Sign] with Eq[Sign] {
         def eqv(x: Sign, y: Sign): Boolean = x == y
         def empty: Sign = Positive

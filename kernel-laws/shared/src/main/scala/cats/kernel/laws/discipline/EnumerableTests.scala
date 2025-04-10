@@ -36,8 +36,8 @@ trait PartialNextTests[A] extends PartialOrderTests[A] {
     new DefaultRuleSet(
       "partialNext",
       Some(partialOrder),
-      "next(a) > a" -> forAll(laws.nextOrderWeak _),
-      "forall a, b. if a < b. next(a) <= b" -> forAll(laws.nextOrderStrong _)
+      "next(a) > a" -> forAll(laws.nextOrderWeak),
+      "forall a, b. if a < b. next(a) <= b" -> forAll(laws.nextOrderStrong)
     )
 
   @deprecated("use `partialNext` without `Eq` parameters", "2.12.1")
@@ -53,8 +53,8 @@ trait PartialPreviousTests[A] extends PartialOrderTests[A] {
     new DefaultRuleSet(
       "partialPrevious",
       Some(partialOrder),
-      "next(a) > a" -> forAll(laws.previousOrderWeak _),
-      "forall a, b. if a < b. next(a) <= b" -> forAll(laws.previousOrderStrong _)
+      "next(a) > a" -> forAll(laws.previousOrderWeak),
+      "forall a, b. if a < b. next(a) <= b" -> forAll(laws.previousOrderStrong)
     )
 
   @deprecated("use `partialPrevious` without `Eq` parameters", "2.12.1")
@@ -74,8 +74,8 @@ trait BoundedEnumerableTests[A] extends OrderTests[A] with PartialNextTests[A] w
       val props: Seq[(String, Prop)] = Seq(
         "min bound is terminal" -> laws.minBoundTerminal,
         "max bound is terminal" -> laws.maxBoundTerminal,
-        "partial right identity" -> forAll(laws.partialRightIdentity _),
-        "partial left identity" -> forAll(laws.partialLeftIdentity _)
+        "partial right identity" -> forAll(laws.partialRightIdentity),
+        "partial left identity" -> forAll(laws.partialLeftIdentity)
       )
     }
 

@@ -36,16 +36,16 @@ trait PartialOrderTests[A] extends EqTests[A] {
     new DefaultRuleSet(
       "partialOrder",
       Some(eqv),
-      "transitivity" -> forAll(laws.transitivity _),
-      "reflexivity lt" -> forAll(laws.reflexivityLt _),
-      "reflexivity gt" -> forAll(laws.reflexivityGt _),
-      "antisymmetry" -> forAll(laws.antisymmetry _),
-      "gt" -> forAll(laws.gt _),
-      "gteqv" -> forAll(laws.gteqv _),
-      "lt" -> forAll(laws.lt _),
-      "partialCompare" -> forAll(laws.partialCompare _),
-      "pmax" -> forAll(laws.pmax _),
-      "pmin" -> forAll(laws.pmin _)
+      "transitivity" -> forAll(laws.transitivity),
+      "reflexivity lt" -> forAll(laws.reflexivityLt),
+      "reflexivity gt" -> forAll(laws.reflexivityGt),
+      "antisymmetry" -> forAll(laws.antisymmetry),
+      "gt" -> forAll(laws.gt),
+      "gteqv" -> forAll(laws.gteqv),
+      "lt" -> forAll(laws.lt),
+      "partialCompare" -> forAll(laws.partialCompare),
+      "pmax" -> forAll(laws.pmax),
+      "pmin" -> forAll(laws.pmin)
     )
 
   @deprecated("use `partialOrder` without `Eq` parameters", "2.12.1")

@@ -62,8 +62,8 @@ trait BitraverseTests[F[_, _]] extends BifoldableTests[F] with BifunctorTests[F]
       val parents = Seq(bifoldable[A, B, C], bifunctor[A, B, C, D, E, H])
       val bases: Seq[(String, Laws#RuleSet)] = Seq.empty
       val props = Seq(
-        "bitraverse identity" -> forAll(laws.bitraverseIdentity[A, B] _),
-        "bitraverse composition" -> forAll(laws.bitraverseCompose[G, A, B, C, D, E, H] _)
+        "bitraverse identity" -> forAll(laws.bitraverseIdentity[A, B]),
+        "bitraverse composition" -> forAll(laws.bitraverseCompose[G, A, B, C, D, E, H])
       )
     }
 }

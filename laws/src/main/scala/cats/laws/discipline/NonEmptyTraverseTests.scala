@@ -78,12 +78,12 @@ trait NonEmptyTraverseTests[F[_]] extends TraverseTests[F] with ReducibleTests[F
     def parents: Seq[RuleSet] = Seq(traverse[A, B, C, M, X, Y], reducible[G, A, B])
     def props: Seq[(String, Prop)] =
       Seq(
-        "nonEmptyTraverse identity" -> forAll(laws.nonEmptyTraverseIdentity[A, C] _),
+        "nonEmptyTraverse identity" -> forAll(laws.nonEmptyTraverseIdentity[A, C]),
         "nonEmptyTraverse sequential composition" -> forAll(
-          laws.nonEmptyTraverseSequentialComposition[A, B, C, X, Y] _
+          laws.nonEmptyTraverseSequentialComposition[A, B, C, X, Y]
         ),
-        "nonEmptyTraverse parallel composition" -> forAll(laws.nonEmptyTraverseParallelComposition[A, B, X, Y] _),
-        "nonEmptyTraverse derive reduceMap" -> forAll(laws.reduceMapDerived[A, M] _)
+        "nonEmptyTraverse parallel composition" -> forAll(laws.nonEmptyTraverseParallelComposition[A, B, X, Y]),
+        "nonEmptyTraverse derive reduceMap" -> forAll(laws.reduceMapDerived[A, M])
       )
   }
 }

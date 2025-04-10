@@ -42,9 +42,9 @@ object NotNull {
    * Since NotNull is just a marker trait with no functionality, it's safe to
    * reuse a single instance of it. This helps prevent unnecessary allocations.
    */
-  private[this] val singleton: NotNull[Any] = new NotNull[Any] {}
+  private val singleton: NotNull[Any] = new NotNull[Any] {}
 
-  private[this] def ambiguousException: Exception =
+  private def ambiguousException: Exception =
     new Exception(
       "An instance of NotNull[Null] was used. This should never happen. Both ambiguous NotNull[Null] instances should always be in scope if one of them is."
     )

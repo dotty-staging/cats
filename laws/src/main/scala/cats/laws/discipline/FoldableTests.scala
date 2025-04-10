@@ -47,25 +47,25 @@ trait FoldableTests[F[_]] extends UnorderedFoldableTests[F] {
     new DefaultRuleSet(
       name = "foldable",
       parent = Some(unorderedFoldable[A, B]),
-      "foldLeft consistent with foldMap" -> forAll(laws.leftFoldConsistentWithFoldMap[A, B] _),
-      "foldRight consistent with foldMap" -> forAll(laws.rightFoldConsistentWithFoldMap[A, B] _),
-      "foldRight is lazy" -> forAll(laws.foldRightLazy[A] _),
-      "ordered consistency" -> forAll(laws.orderedConsistency[A] _),
-      "exists consistent with find" -> forAll(laws.existsConsistentWithFind[A] _),
-      "foldM identity" -> forAll(laws.foldMIdentity[A, B] _),
+      "foldLeft consistent with foldMap" -> forAll(laws.leftFoldConsistentWithFoldMap[A, B]),
+      "foldRight consistent with foldMap" -> forAll(laws.rightFoldConsistentWithFoldMap[A, B]),
+      "foldRight is lazy" -> forAll(laws.foldRightLazy[A]),
+      "ordered consistency" -> forAll(laws.orderedConsistency[A]),
+      "exists consistent with find" -> forAll(laws.existsConsistentWithFind[A]),
+      "foldM identity" -> forAll(laws.foldMIdentity[A, B]),
       "reduceLeftOption consistent with reduceLeftToOption" ->
-        forAll(laws.reduceLeftOptionConsistentWithReduceLeftToOption[A] _),
+        forAll(laws.reduceLeftOptionConsistentWithReduceLeftToOption[A]),
       "reduceRightOption consistent with reduceRightToOption" ->
-        forAll(laws.reduceRightOptionConsistentWithReduceRightToOption[A] _),
-      "get reference" -> forAll(laws.getRef[A] _),
-      "fold reference" -> forAll(laws.foldRef[A] _),
-      "toList reference" -> forAll(laws.toListRef[A] _),
-      "filter_ reference" -> forAll(laws.filter_Ref[A] _),
-      "takeWhile_ reference" -> forAll(laws.takeWhile_Ref[A] _),
-      "dropWhile_ reference" -> forAll(laws.dropWhile_Ref[A] _),
-      "collectFirstSome reference" -> forAll(laws.collectFirstSome_Ref[A, B] _),
-      "collectFirst reference" -> forAll(laws.collectFirst_Ref[A, B] _),
-      "foldRightDefer consistency" -> forAll(laws.foldRightDeferConsistentWithFoldRight[A, B] _)
+        forAll(laws.reduceRightOptionConsistentWithReduceRightToOption[A]),
+      "get reference" -> forAll(laws.getRef[A]),
+      "fold reference" -> forAll(laws.foldRef[A]),
+      "toList reference" -> forAll(laws.toListRef[A]),
+      "filter_ reference" -> forAll(laws.filter_Ref[A]),
+      "takeWhile_ reference" -> forAll(laws.takeWhile_Ref[A]),
+      "dropWhile_ reference" -> forAll(laws.dropWhile_Ref[A]),
+      "collectFirstSome reference" -> forAll(laws.collectFirstSome_Ref[A, B]),
+      "collectFirst reference" -> forAll(laws.collectFirst_Ref[A, B]),
+      "foldRightDefer consistency" -> forAll(laws.foldRightDeferConsistentWithFoldRight[A, B])
     )
 }
 

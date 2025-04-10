@@ -35,7 +35,7 @@ trait FlatMapRecTests[F[_]] extends Laws {
     new DefaultRuleSet(
       name = "flatMapTailRec",
       parent = None,
-      "tailRecM consistent flatMap" -> forAll(laws.tailRecMConsistentFlatMap[A] _)
+      "tailRecM consistent flatMap" -> forAll(laws.tailRecMConsistentFlatMap[A])
     )
 }
 

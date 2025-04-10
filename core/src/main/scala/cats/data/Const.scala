@@ -96,9 +96,9 @@ sealed abstract private[data] class ConstInstances extends ConstInstances0 {
       override def minBound: Const[A, B] = Const(A.minBound)
     }
 
-  implicit def catsDataOrderForConst[A: Order, B]: Order[Const[A, B]] = _ compare _
+  implicit def catsDataOrderForConst[A: Order, B]: Order[Const[A, B]] = _ `compare` _
 
-  implicit def catsDataPartialOrderForConst[A: PartialOrder, B]: PartialOrder[Const[A, B]] = _ partialCompare _
+  implicit def catsDataPartialOrderForConst[A: PartialOrder, B]: PartialOrder[Const[A, B]] = _ `partialCompare` _
 
   implicit def catsDataAlignForConst[A: Semigroup]: Align[Const[A, *]] =
     new Align[Const[A, *]] {
@@ -159,7 +159,7 @@ sealed abstract private[data] class ConstInstances extends ConstInstances0 {
         x.combine(y)
     }
 
-  implicit def catsDataSemigroupForConst[A: Semigroup, B]: Semigroup[Const[A, B]] = _ combine _
+  implicit def catsDataSemigroupForConst[A: Semigroup, B]: Semigroup[Const[A, B]] = _ `combine` _
 
   implicit val catsDataBifoldableForConst: Bifoldable[Const] =
     new Bifoldable[Const] {

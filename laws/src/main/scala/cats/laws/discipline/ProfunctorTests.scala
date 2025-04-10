@@ -46,12 +46,12 @@ trait ProfunctorTests[F[_, _]] extends Laws {
     new DefaultRuleSet(
       name = "profunctor",
       parent = None,
-      "profunctor identity" -> forAll(laws.profunctorIdentity[A, B] _),
-      "profunctor composition" -> forAll(laws.profunctorComposition[A, B, C, D, E, G] _),
-      "profunctor lmap identity" -> forAll(laws.profunctorLmapIdentity[A, B] _),
-      "profunctor rmap identity" -> forAll(laws.profunctorRmapIdentity[A, B] _),
-      "profunctor lmap composition" -> forAll(laws.profunctorLmapComposition[A, B, C, D] _),
-      "profunctor rmap composition" -> forAll(laws.profunctorRmapComposition[A, D, C, B] _)
+      "profunctor identity" -> forAll(laws.profunctorIdentity[A, B]),
+      "profunctor composition" -> forAll(laws.profunctorComposition[A, B, C, D, E, G]),
+      "profunctor lmap identity" -> forAll(laws.profunctorLmapIdentity[A, B]),
+      "profunctor rmap identity" -> forAll(laws.profunctorRmapIdentity[A, B]),
+      "profunctor lmap composition" -> forAll(laws.profunctorLmapComposition[A, B, C, D]),
+      "profunctor rmap composition" -> forAll(laws.profunctorRmapComposition[A, D, C, B])
     )
 }
 

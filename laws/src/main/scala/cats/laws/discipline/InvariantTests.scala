@@ -42,8 +42,8 @@ trait InvariantTests[F[_]] extends Laws {
     new DefaultRuleSet(
       name = "invariant",
       parent = None,
-      "invariant identity" -> forAll(laws.invariantIdentity[A] _),
-      "invariant composition" -> forAll(laws.invariantComposition[A, B, C] _)
+      "invariant identity" -> forAll(laws.invariantIdentity[A]),
+      "invariant composition" -> forAll(laws.invariantComposition[A, B, C])
     )
 }
 

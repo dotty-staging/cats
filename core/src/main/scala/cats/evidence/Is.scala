@@ -47,21 +47,21 @@ abstract class Is[A, B] extends Serializable {
    * `Is` is transitive and therefore values of `Is` can be composed in a
    * chain much like functions. See also `compose`.
    */
-  @inline final def andThen[C](next: B Is C): A Is C =
+  @inline final def andThen[C](next: B `Is` C): A `Is` C =
     next.substitute[Is[A, *]](this)
 
   /**
    * `Is` is transitive and therefore values of `Is` can be composed in a
    * chain much like functions. See also `andThen`.
    */
-  @inline final def compose[C](prev: C Is A): C Is B =
+  @inline final def compose[C](prev: C `Is` A): C `Is` B =
     prev.andThen(this)
 
   /**
    * `Is` is symmetric and therefore can be flipped around. Flipping is its
    * own inverse, so `x.flip.flip == x`.
    */
-  @inline final def flip: B Is A =
+  @inline final def flip: B `Is` A =
     this.substitute[Is[*, A]](Is.refl)
 
   /**
@@ -69,8 +69,8 @@ abstract class Is[A, B] extends Serializable {
    * wrap one layer of `F[_]` context around the types you're equating
    * before substitution.
    */
-  @inline final def lift[F[_]]: F[A] Is F[B] =
-    substitute[λ[α => F[A] Is F[α]]](Is.refl)
+  @inline final def lift[F[_]]: F[A] `Is` F[B] =
+    substitute[λ[α => F[A] `Is` F[α]]](Is.refl)
 
   /**
    * Substitution on identity brings about a direct coercion function of the
@@ -102,8 +102,8 @@ sealed abstract class IsInstances {
    * The category instance on Leibniz categories.
    */
   implicit val leibniz: Category[Is] = new Category[Is] {
-    def id[A]: A Is A = refl[A]
-    def compose[A, B, C](bc: B Is C, ab: A Is B): A Is C = bc.compose(ab)
+    def id[A]: A `Is` A = refl[A]
+    def compose[A, B, C](bc: B `Is` C, ab: A `Is` B): A `Is` C = bc.compose(ab)
   }
 }
 
@@ -113,7 +113,7 @@ object Is extends IsInstances with IsSupport {
    * In truth, "all values of `A Is B` are `refl`". `reflAny` is that
    * single value.
    */
-  private[this] val reflAny = new Is[Any, Any] {
+  private val reflAny = new Is[Any, Any] {
     def substitute[F[_]](fa: F[Any]) = fa
   }
 
@@ -126,8 +126,8 @@ object Is extends IsInstances with IsSupport {
    * Implementation note: all values of `refl` return the same (private)
    * instance at whatever type is appropriate to save on allocations.
    */
-  @inline implicit def refl[A]: A Is A =
-    reflAny.asInstanceOf[A Is A]
+  @inline implicit def refl[A]: A `Is` A =
+    reflAny.asInstanceOf[A `Is` A]
 
   /**
    * It can be convenient to convert a `Predef.=:=` value into an `Is` value.
@@ -135,6 +135,6 @@ object Is extends IsInstances with IsSupport {
    * of an abundance of caution
    */
   @deprecated("use Is.isFromPredef", "2.2.0")
-  @inline def unsafeFromPredef[A, B](eq: A =:= B): A Is B =
+  @inline def unsafeFromPredef[A, B](eq: A =:= B): A `Is` B =
     Is.isFromPredef(eq)
 }

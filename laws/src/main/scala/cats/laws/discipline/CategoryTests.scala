@@ -41,8 +41,8 @@ trait CategoryTests[F[_, _]] extends ComposeTests[F] {
     new DefaultRuleSet(
       name = "category",
       parent = Some(compose[A, B, C, D]),
-      "category left identity" -> forAll(laws.categoryLeftIdentity[A, B] _),
-      "category right identity" -> forAll(laws.categoryRightIdentity[A, B] _)
+      "category left identity" -> forAll(laws.categoryLeftIdentity[A, B]),
+      "category right identity" -> forAll(laws.categoryRightIdentity[A, B])
     )
 }
 

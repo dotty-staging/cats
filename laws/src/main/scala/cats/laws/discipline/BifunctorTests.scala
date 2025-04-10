@@ -44,10 +44,10 @@ trait BifunctorTests[F[_, _]] extends Laws {
     new DefaultRuleSet(
       name = "Bifunctor",
       parent = None,
-      "Bifunctor Identity" -> forAll(laws.bifunctorIdentity[A, B] _),
-      "Bifunctor associativity" -> forAll(laws.bifunctorComposition[A, A2, A3, B, B2, B3] _),
-      "Bifunctor leftMap Identity" -> forAll(laws.bifunctorLeftMapIdentity[A, B] _),
-      "Bifunctor leftMap associativity" -> forAll(laws.bifunctorLeftMapComposition[A, B, A2, A3] _)
+      "Bifunctor Identity" -> forAll(laws.bifunctorIdentity[A, B]),
+      "Bifunctor associativity" -> forAll(laws.bifunctorComposition[A, A2, A3, B, B2, B3]),
+      "Bifunctor leftMap Identity" -> forAll(laws.bifunctorLeftMapIdentity[A, B]),
+      "Bifunctor leftMap associativity" -> forAll(laws.bifunctorLeftMapComposition[A, B, A2, A3])
     )
 }
 

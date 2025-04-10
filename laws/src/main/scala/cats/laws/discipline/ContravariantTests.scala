@@ -41,8 +41,8 @@ trait ContravariantTests[F[_]] extends InvariantTests[F] {
     new DefaultRuleSet(
       name = "contravariant",
       parent = Some(invariant[A, B, C]),
-      "contravariant identity" -> forAll(laws.contravariantIdentity[A] _),
-      "contravariant composition" -> forAll(laws.contravariantComposition[A, B, C] _)
+      "contravariant identity" -> forAll(laws.contravariantIdentity[A]),
+      "contravariant composition" -> forAll(laws.contravariantComposition[A, B, C])
     )
 }
 

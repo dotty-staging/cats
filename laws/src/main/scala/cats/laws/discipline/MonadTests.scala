@@ -53,10 +53,10 @@ trait MonadTests[F[_]] extends ApplicativeTests[F] with FlatMapTests[F] {
       def parents: Seq[RuleSet] = Seq(applicative[A, B, C], flatMap[A, B, C])
       def props: Seq[(String, Prop)] =
         Seq(
-          "monad left identity" -> forAll(laws.monadLeftIdentity[A, B] _),
-          "monad right identity" -> forAll(laws.monadRightIdentity[A] _),
-          "map flatMap coherence" -> forAll(laws.mapFlatMapCoherence[A, B] _),
-          "flatMapOrKeep flatMap coherence" -> forAll(laws.flatMapOrKeepToFlatMapCoherence[A, A] _)
+          "monad left identity" -> forAll(laws.monadLeftIdentity[A, B]),
+          "monad right identity" -> forAll(laws.monadRightIdentity[A]),
+          "map flatMap coherence" -> forAll(laws.mapFlatMapCoherence[A, B]),
+          "flatMapOrKeep flatMap coherence" -> forAll(laws.flatMapOrKeepToFlatMapCoherence[A, A])
         ) ++ (if (Platform.isJvm) Seq[(String, Prop)]("tailRecM stack safety" -> Prop.lzy(laws.tailRecMStackSafety))
               else Seq.empty)
     }
@@ -83,10 +83,10 @@ trait MonadTests[F[_]] extends ApplicativeTests[F] with FlatMapTests[F] {
       def parents: Seq[RuleSet] = Seq(applicative[A, B, C], flatMap[A, B, C])
       def props: Seq[(String, Prop)] =
         Seq(
-          "monad left identity" -> forAll(laws.monadLeftIdentity[A, B] _),
-          "monad right identity" -> forAll(laws.monadRightIdentity[A] _),
-          "map flatMap coherence" -> forAll(laws.mapFlatMapCoherence[A, B] _),
-          "flatMapOrKeep flatMap coherence" -> forAll(laws.flatMapOrKeepToFlatMapCoherence[A, A] _)
+          "monad left identity" -> forAll(laws.monadLeftIdentity[A, B]),
+          "monad right identity" -> forAll(laws.monadRightIdentity[A]),
+          "map flatMap coherence" -> forAll(laws.mapFlatMapCoherence[A, B]),
+          "flatMapOrKeep flatMap coherence" -> forAll(laws.flatMapOrKeepToFlatMapCoherence[A, A])
         )
     }
 }

@@ -50,17 +50,17 @@ trait ReducibleTests[F[_]] extends FoldableTests[F] {
     new DefaultRuleSet(
       name = "reducible",
       parent = Some(foldable[A, B]),
-      "reduceLeftTo consistent with reduceMap" -> forAll(laws.reduceLeftToConsistentWithReduceMap[A, B] _),
-      "reduceRightTo consistent with reduceMap" -> forAll(laws.reduceRightToConsistentWithReduceMap[A, B] _),
+      "reduceLeftTo consistent with reduceMap" -> forAll(laws.reduceLeftToConsistentWithReduceMap[A, B]),
+      "reduceRightTo consistent with reduceMap" -> forAll(laws.reduceRightToConsistentWithReduceMap[A, B]),
       "reduceRightTo consistent with reduceRightToOption" ->
-        forAll(laws.reduceRightToConsistentWithReduceRightToOption[A, B] _),
+        forAll(laws.reduceRightToConsistentWithReduceRightToOption[A, B]),
       "reduceRight consistent with reduceRightOption" ->
-        forAll(laws.reduceRightConsistentWithReduceRightOption[A] _),
+        forAll(laws.reduceRightConsistentWithReduceRightOption[A]),
       "reduce consistent with reduceLeft" ->
-        forAll(laws.reduceReduceLeftConsistent[B] _),
-      "nonEmptyTraverseVoid consistent with traverseVoid" -> forAll(laws.traverseConsistent[G, A, B] _),
-      "nonEmptySequenceVoid consistent with sequenceVoid" -> forAll(laws.sequenceConsistent[G, A] _),
-      "size consistent with reduceMap" -> forAll(laws.sizeConsistent[A] _)
+        forAll(laws.reduceReduceLeftConsistent[B]),
+      "nonEmptyTraverseVoid consistent with traverseVoid" -> forAll(laws.traverseConsistent[G, A, B]),
+      "nonEmptySequenceVoid consistent with sequenceVoid" -> forAll(laws.sequenceConsistent[G, A]),
+      "size consistent with reduceMap" -> forAll(laws.sizeConsistent[A])
     )
 }
 

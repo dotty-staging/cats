@@ -92,14 +92,14 @@ trait LatticeLaws[A] extends GroupLaws[A] {
     meet = Some(boundedSemilattice(A.meetSemilattice))
   )
 
-  def boundedJoinLattice(implicit A: Lattice[A] with BoundedJoinSemilattice[A]) = new LatticeProperties(
+  def boundedJoinLattice(implicit A: Lattice[A] & BoundedJoinSemilattice[A]) = new LatticeProperties(
     name = "boundedJoinLattice",
     parents = Seq(boundedJoinSemilattice, lattice),
     join = Some(boundedSemilattice(A.joinSemilattice)),
     meet = Some(semilattice(A.meetSemilattice))
   )
 
-  def boundedMeetLattice(implicit A: Lattice[A] with BoundedMeetSemilattice[A]) = new LatticeProperties(
+  def boundedMeetLattice(implicit A: Lattice[A] & BoundedMeetSemilattice[A]) = new LatticeProperties(
     name = "boundedMeetLattice",
     parents = Seq(boundedMeetSemilattice, lattice),
     join = Some(semilattice(A.joinSemilattice)),

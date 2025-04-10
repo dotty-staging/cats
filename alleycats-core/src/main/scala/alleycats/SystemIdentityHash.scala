@@ -32,7 +32,7 @@ trait SystemIdentityHash[A <: AnyRef] extends ReferentialEq[A] with Hash[A] {
 }
 
 object SystemIdentityHash {
-  private[this] val identityHash: Hash[AnyRef] = new SystemIdentityHash[AnyRef] {}
+  private val identityHash: Hash[AnyRef] = new SystemIdentityHash[AnyRef] {}
 
   def apply[A <: AnyRef]: Hash[A] = identityHash.asInstanceOf[Hash[A]]
 }

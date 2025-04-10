@@ -33,8 +33,8 @@ trait MonoidKTests[F[_]] extends SemigroupKTests[F] {
     new DefaultRuleSet(
       "monoidK",
       Some(semigroupK[A]),
-      "monoidK left identity" -> forAll(laws.monoidKLeftIdentity[A] _),
-      "monoidK right identity" -> forAll(laws.monoidKRightIdentity[A] _)
+      "monoidK left identity" -> forAll(laws.monoidKLeftIdentity[A]),
+      "monoidK right identity" -> forAll(laws.monoidKRightIdentity[A])
     )
 }
 

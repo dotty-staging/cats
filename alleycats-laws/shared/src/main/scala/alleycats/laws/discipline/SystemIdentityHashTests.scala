@@ -36,8 +36,8 @@ trait SystemIdentityHashTests[A] extends ReferentialEqTests[A] {
     new DefaultRuleSet(
       "systemIdentityHash",
       Some(eqv),
-      "hash compatibility" -> forAll(laws.hashCompatibility _),
-      "same as universal hash" -> forAll(laws.sameAsUniversalHash _),
+      "hash compatibility" -> forAll(laws.hashCompatibility),
+      "same as universal hash" -> forAll(laws.sameAsUniversalHash),
       "same as scala hashing" -> forAll((x: A, y: A) => laws.sameAsScalaHashing(x, y, hashA))
     )
 }

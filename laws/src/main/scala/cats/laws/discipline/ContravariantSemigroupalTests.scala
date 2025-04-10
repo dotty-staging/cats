@@ -51,7 +51,7 @@ trait ContravariantSemigroupalTests[F[_]] extends ContravariantTests[F] with Sem
       val bases: Seq[(String, Laws#RuleSet)] = Seq.empty
       val props = Seq(
         "contravariantSemigroupal contramap2 delta associates" ->
-          forAll(laws.contravariantSemigroupalContramap2DiagonalAssociates[A] _)
+          forAll(laws.contravariantSemigroupalContramap2DiagonalAssociates[A])
       )
     }
 }

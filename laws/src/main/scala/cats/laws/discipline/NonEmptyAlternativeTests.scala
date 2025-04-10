@@ -50,12 +50,12 @@ trait NonEmptyAlternativeTests[F[_]] extends ApplicativeTests[F] with SemigroupK
       val bases: Seq[(String, RuleSet)] = Nil
       val parents: Seq[RuleSet] = Seq(semigroupK[A], applicative[A, B, C])
       val props: Seq[(String, Prop)] = Seq(
-        "left distributivity" -> forAll(laws.nonEmptyAlternativeLeftDistributivity[A, B] _),
-        "right distributivity" -> forAll(laws.nonEmptyAlternativeRightDistributivity[A, B] _),
+        "left distributivity" -> forAll(laws.nonEmptyAlternativeLeftDistributivity[A, B]),
+        "right distributivity" -> forAll(laws.nonEmptyAlternativeRightDistributivity[A, B]),
         "prependK consistent with pure and combineK" ->
-          forAll(laws.nonEmptyAlternativePrependKConsitentWithPureAndCombineK[A] _),
+          forAll(laws.nonEmptyAlternativePrependKConsitentWithPureAndCombineK[A]),
         "appendK consistent with pure and combineK" ->
-          forAll(laws.nonEmptyAlternativeAppendKConsitentWithPureAndCombineK[A] _)
+          forAll(laws.nonEmptyAlternativeAppendKConsitentWithPureAndCombineK[A])
       )
     }
 }

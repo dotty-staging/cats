@@ -126,7 +126,7 @@ trait MonadError[F[_], E] extends ApplicativeError[F, E] with Monad[F] {
     rethrow(flatTap(attempt(fa))(f))
 
   override def adaptError[A](fa: F[A])(pf: PartialFunction[E, E]): F[A] =
-    recoverWith(fa)(pf.andThen(raiseError[A] _))
+    recoverWith(fa)(pf.andThen(raiseError[A]))
 }
 
 object MonadError {

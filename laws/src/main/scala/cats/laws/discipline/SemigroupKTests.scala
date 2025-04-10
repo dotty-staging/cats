@@ -31,7 +31,7 @@ trait SemigroupKTests[F[_]] extends Laws {
   def laws: SemigroupKLaws[F]
 
   def semigroupK[A: Arbitrary](implicit ArbFA: Arbitrary[F[A]], EqFA: Eq[F[A]]): RuleSet =
-    new DefaultRuleSet("semigroupK", None, "semigroupK associative" -> forAll(laws.semigroupKAssociative[A] _))
+    new DefaultRuleSet("semigroupK", None, "semigroupK associative" -> forAll(laws.semigroupKAssociative[A]))
 }
 
 object SemigroupKTests {

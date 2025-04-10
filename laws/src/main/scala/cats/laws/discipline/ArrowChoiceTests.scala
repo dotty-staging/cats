@@ -79,12 +79,12 @@ trait ArrowChoiceTests[F[_, _]] extends ArrowTests[F] with ChoiceTests[F] {
         )
       def props: Seq[(String, Prop)] =
         Seq(
-          "left and lift commute" -> forAll(laws.leftLiftCommute[A, B, C] _),
-          "left and compose commute" -> forAll(laws.leftComposeCommute[A, B, C, D] _),
-          "left and right consistent" -> forAll(laws.leftRightConsistent[A, B, C] _),
-          "left and then lift (Left.apply) commutes" -> forAll(laws.leftAndThenLiftedLeftApplyCommutes[A, B, C] _),
-          "left and then identity +++ _ commutes" -> forAll(laws.leftAndThenRightIdentityCommutes[A, B, C, D] _),
-          "left commutes with sum association" -> forAll(laws.leftTwiceCommutesWithSumAssociation[A, B, C, D] _)
+          "left and lift commute" -> forAll(laws.leftLiftCommute[A, B, C]),
+          "left and compose commute" -> forAll(laws.leftComposeCommute[A, B, C, D]),
+          "left and right consistent" -> forAll(laws.leftRightConsistent[A, B, C]),
+          "left and then lift (Left.apply) commutes" -> forAll(laws.leftAndThenLiftedLeftApplyCommutes[A, B, C]),
+          "left and then identity +++ _ commutes" -> forAll(laws.leftAndThenRightIdentityCommutes[A, B, C, D]),
+          "left commutes with sum association" -> forAll(laws.leftTwiceCommutesWithSumAssociation[A, B, C, D])
         )
     }
 }

@@ -158,7 +158,7 @@ final case class Now[+A](value: A) extends Eval.Leaf[A] {
  * garbage collection.
  */
 final class Later[+A](f: () => A) extends Eval.Leaf[A] {
-  private[this] var thunk: () => A = f
+  private var thunk: () => A = f
 
   // The idea here is that `f` may have captured very large
   // structures, but produce a very small result. In this case, once

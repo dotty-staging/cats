@@ -35,7 +35,7 @@ trait LowerBoundedTests[A] extends PartialOrderTests[A] {
     new DefaultRuleSet(
       "lowerBounded",
       Some(partialOrder),
-      "bound is less than or equals" -> forAll(laws.boundLteqv _)
+      "bound is less than or equals" -> forAll(laws.boundLteqv)
     )
 
   @deprecated("use `lowerBounded` without `Eq` parameters", "2.12.1")
@@ -55,7 +55,7 @@ trait UpperBoundedTests[A] extends PartialOrderTests[A] {
     new DefaultRuleSet(
       "upperBounded",
       Some(partialOrder),
-      "bound is greater than or equals" -> forAll(laws.boundGteqv _)
+      "bound is greater than or equals" -> forAll(laws.boundGteqv)
     )
 
   @deprecated("use `upperBounded` without `Eq` parameters", "2.12.1")

@@ -62,7 +62,7 @@ trait VectorInstances extends cats.kernel.instances.VectorInstances {
         if (fb.isEmpty) Vector.empty // do O(1) work if either is empty
         else fa.flatMap(a => fb.map(b => f(a, b))) // already O(1) if fa is empty
 
-      private[this] val evalEmpty: Eval[Vector[Nothing]] = Eval.now(Vector.empty)
+      private val evalEmpty: Eval[Vector[Nothing]] = Eval.now(Vector.empty)
 
       override def map2Eval[A, B, Z](fa: Vector[A], fb: Eval[Vector[B]])(f: (A, B) => Z): Eval[Vector[Z]] =
         if (fa.isEmpty) evalEmpty // no need to evaluate fb
@@ -220,7 +220,7 @@ trait VectorInstances extends cats.kernel.instances.VectorInstances {
 
       def functor: Functor[Vector] = this
 
-      def align[A, B](fa: Vector[A], fb: Vector[B]): Vector[A Ior B] = {
+      def align[A, B](fa: Vector[A], fb: Vector[B]): Vector[A `Ior` B] = {
         val aLarger = fa.size >= fb.size
         if (aLarger) {
           cats.compat.Vector.zipWith(fa, fb)(Ior.both) ++ fa.drop(fb.size).map(Ior.left)

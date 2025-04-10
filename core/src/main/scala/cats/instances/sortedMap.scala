@@ -194,7 +194,7 @@ private[instances] trait SortedMapInstances2 extends SortedMapInstances1 {
 class SortedMapHash[K, V](implicit V: Hash[V], O: Order[K], K: Hash[K])
     extends SortedMapEq[K, V]
     with Hash[SortedMap[K, V]] {
-  private[this] val underlying: Hash[SortedMap[K, V]] = new cats.kernel.instances.SortedMapHash[K, V]
+  private val underlying: Hash[SortedMap[K, V]] = new cats.kernel.instances.SortedMapHash[K, V]
   def hash(x: SortedMap[K, V]): Int = underlying.hash(x)
 }
 

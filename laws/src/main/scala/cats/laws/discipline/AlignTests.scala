@@ -38,25 +38,25 @@ trait AlignTests[F[_]] extends Laws {
     ArbFC: Arbitrary[F[C]],
     ArbFAtoB: Arbitrary[A => C],
     ArbFBtoC: Arbitrary[B => D],
-    ArbIorABtoC: Arbitrary[A Ior B => C],
+    ArbIorABtoC: Arbitrary[A `Ior` B => C],
     CogenA: Cogen[A],
     CogenB: Cogen[B],
     CogenC: Cogen[C],
     EqFA: Eq[F[A]],
     EqFB: Eq[F[B]],
     EqFC: Eq[F[C]],
-    EqFIorAA: Eq[F[A Ior A]],
-    EqFIorAB: Eq[F[A Ior B]],
-    EqFIorCD: Eq[F[C Ior D]],
+    EqFIorAA: Eq[F[A `Ior` A]],
+    EqFIorAB: Eq[F[A `Ior` B]],
+    EqFIorCD: Eq[F[C `Ior` D]],
     EqFAssoc: Eq[F[Ior[Ior[A, B], C]]]
   ): RuleSet =
     new DefaultRuleSet(
       name = "align",
       parent = None,
-      "align associativity" -> forAll(laws.alignAssociativity[A, B, C] _),
-      "align homomorphism" -> forAll(laws.alignHomomorphism[A, B, C, D] _),
-      "alignWith consistent" -> forAll(laws.alignWithConsistent[A, B, C] _),
-      "alignMergeWith consistent" -> forAll(laws.alignMergeWithConsistent[A] _)
+      "align associativity" -> forAll(laws.alignAssociativity[A, B, C]),
+      "align homomorphism" -> forAll(laws.alignHomomorphism[A, B, C, D]),
+      "alignWith consistent" -> forAll(laws.alignWithConsistent[A, B, C]),
+      "alignMergeWith consistent" -> forAll(laws.alignMergeWithConsistent[A])
     )
 }
 

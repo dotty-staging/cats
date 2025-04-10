@@ -27,7 +27,7 @@ class EvidenceSuite extends CatsSuite {
 
   test("Is / Leibniz") {
 
-    def cast1[A, B](as: List[A])(implicit ev: A Is B): List[B] =
+    def cast1[A, B](as: List[A])(implicit ev: A `Is` B): List[B] =
       ev.substitute(as)
     cast1[Int, Int](1 :: 2 :: 3 :: Nil)
 

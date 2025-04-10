@@ -66,25 +66,25 @@ class IorSuite extends CatsSuite {
   )
 
   test("left Option is defined left and both") {
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       assert((i.isLeft || i.isBoth) === (i.left.isDefined))
     }
   }
 
   test("right Option is defined for right and both") {
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       assert((i.isRight || i.isBoth) === (i.right.isDefined))
     }
   }
 
   test("onlyLeftOrRight") {
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       assert(i.onlyLeft.map(Left(_)).orElse(i.onlyRight.map(Right(_))) === (i.onlyLeftOrRight))
     }
   }
 
   test("onlyBoth consistent with left and right") {
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       assert(i.onlyBoth === (for {
         left <- i.left
         right <- i.right
@@ -93,37 +93,37 @@ class IorSuite extends CatsSuite {
   }
 
   test("pad") {
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       assert(i.pad === ((i.left, i.right)))
     }
   }
 
   test("unwrap consistent with isBoth") {
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       assert(i.unwrap.isRight === (i.isBoth))
     }
   }
 
   test("valueOr consistent with leftMap") {
-    forAll { (i: Int Ior String, f: Int => String) =>
+    forAll { (i: Int `Ior` String, f: Int => String) =>
       assert(i.valueOr(f) === (i.leftMap(f).fold(identity, identity, _ + _)))
     }
   }
 
   test("isLeft consistent with toOption") {
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       assert(i.isLeft === (i.toOption.isEmpty))
     }
   }
 
   test("isLeft consistent with toList") {
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       assert(i.isLeft === (i.toList.isEmpty))
     }
   }
 
   test("isLeft consistent with forall and exists") {
-    forAll { (i: Int Ior String, p: String => Boolean) =>
+    forAll { (i: Int `Ior` String, p: String => Boolean) =>
       if (i.isLeft) {
         assert((i.forall(p) && !i.exists(p)) === true)
       }
@@ -131,7 +131,7 @@ class IorSuite extends CatsSuite {
   }
 
   test("leftMap then swap equivalent to swap then map") {
-    forAll { (i: Int Ior String, f: Int => Double) =>
+    forAll { (i: Int `Ior` String, f: Int => Double) =>
       assert(i.leftMap(f).swap === (i.swap.map(f)))
     }
   }
@@ -145,7 +145,7 @@ class IorSuite extends CatsSuite {
   }
 
   test("foreach runs for right and both") {
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       var count = 0
       i.foreach { _ =>
         count += 1
@@ -156,39 +156,39 @@ class IorSuite extends CatsSuite {
   }
 
   test("show isn't empty") {
-    val iorShow = implicitly[Show[Int Ior String]]
+    val iorShow = implicitly[Show[Int `Ior` String]]
 
-    forAll { (i: Int Ior String) =>
+    forAll { (i: Int `Ior` String) =>
       assert(iorShow.show(i).nonEmpty === true)
     }
   }
 
   test("merge") {
-    forAll { (i: Int Ior Int) =>
+    forAll { (i: Int `Ior` Int) =>
       assert(i.merge === (i.left.getOrElse(0) + i.right.getOrElse(0)))
     }
   }
 
   test("mergeLeft") {
-    forAll { (i: Int Ior Int) =>
+    forAll { (i: Int `Ior` Int) =>
       assert(i.mergeLeft === (i.left.orElse(i.right).get))
     }
   }
 
   test("mergeRight") {
-    forAll { (i: Int Ior Int) =>
+    forAll { (i: Int `Ior` Int) =>
       assert(i.mergeRight === (i.right.orElse(i.left).get))
     }
   }
 
   test("mergeWith") {
-    forAll { (i: Int Ior Int, f: (Int, Int) => Int) =>
+    forAll { (i: Int `Ior` Int, f: (Int, Int) => Int) =>
       assert(i.mergeWith(f) === i.onlyBoth.map(f.tupled).orElse(i.left).orElse(i.right).get)
     }
   }
 
   test("putLeft") {
-    forAll { (i: Int Ior Int) =>
+    forAll { (i: Int `Ior` Int) =>
       val expectedResult =
         if (i.isLeft)
           Ior.left(2)
@@ -199,7 +199,7 @@ class IorSuite extends CatsSuite {
   }
 
   test("putRight") {
-    forAll { (i: Int Ior Int) =>
+    forAll { (i: Int `Ior` Int) =>
       val expectedResult =
         if (i.isRight)
           Ior.right(2)
@@ -210,7 +210,7 @@ class IorSuite extends CatsSuite {
   }
 
   test("addLeft") {
-    forAll { (i: Int Ior Int, j: Int) =>
+    forAll { (i: Int `Ior` Int, j: Int) =>
       val expectedResult =
         if (i.isLeft)
           Ior.left(i.left.get + j)
@@ -223,7 +223,7 @@ class IorSuite extends CatsSuite {
   }
 
   test("addRight") {
-    forAll { (i: Int Ior Int, j: Int) =>
+    forAll { (i: Int `Ior` Int, j: Int) =>
       val expectedResult =
         if (i.isLeft)
           Ior.both(i.left.get, j)
@@ -236,13 +236,13 @@ class IorSuite extends CatsSuite {
   }
 
   test("combine left") {
-    forAll { (i: Int Ior String, j: Int Ior String) =>
+    forAll { (i: Int `Ior` String, j: Int `Ior` String) =>
       assert(i.combine(j).left === (i.left.map(_ + j.left.getOrElse(0)).orElse(j.left)))
     }
   }
 
   test("combine right") {
-    forAll { (i: Int Ior String, j: Int Ior String) =>
+    forAll { (i: Int `Ior` String, j: Int `Ior` String) =>
       assert(i.combine(j).right === (i.right.map(_ + j.right.getOrElse("")).orElse(j.right)))
     }
   }
@@ -256,32 +256,32 @@ class IorSuite extends CatsSuite {
   }
 
   test("Option roundtrip") {
-    forAll { (ior: String Ior Int) =>
+    forAll { (ior: String `Ior` Int) =>
       val iorMaybe = Ior.fromOptions(ior.left, ior.right)
       assert(iorMaybe === (Some(ior)))
     }
   }
 
   test("to consistent with toList") {
-    forAll { (x: Int Ior String) =>
+    forAll { (x: Int `Ior` String) =>
       assert(x.to[List, String] === (x.toList))
     }
   }
 
   test("to consistent with toOption") {
-    forAll { (x: Int Ior String) =>
+    forAll { (x: Int `Ior` String) =>
       assert(x.to[Option, String] === (x.toOption))
     }
   }
 
   test("toEither consistent with right") {
-    forAll { (x: Int Ior String) =>
+    forAll { (x: Int `Ior` String) =>
       assert(x.toEither.toOption === (x.right))
     }
   }
 
   test("toValidated consistent with right") {
-    forAll { (x: Int Ior String) =>
+    forAll { (x: Int `Ior` String) =>
       assert(x.toValidated.toOption === (x.right))
     }
   }
@@ -353,7 +353,7 @@ class IorSuite extends CatsSuite {
   }
 
   test("getOrElse consistent with Option getOrElse") {
-    forAll { (x: Int Ior String, default: String) =>
+    forAll { (x: Int `Ior` String, default: String) =>
       assert(x.getOrElse(default) === (x.toOption.getOrElse(default)))
     }
   }

@@ -74,7 +74,7 @@ trait Semigroup[@sp(Int, Long, Float, Double) A] extends Any with Serializable {
   /**
    * Return `a` combined with itself more than once.
    */
-  protected[this] def repeatedCombineN(a: A, n: Int): A = {
+  protected def repeatedCombineN(a: A, n: Int): A = {
     @tailrec def loop(b: A, k: Int, extra: A): A =
       if (k == 1) combine(b, extra)
       else {

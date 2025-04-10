@@ -52,10 +52,10 @@ trait DistributiveTests[F[_]] extends FunctorTests[F] {
       def parents: Seq[RuleSet] = Seq(functor[A, B, C])
       def props: Seq[(String, Prop)] =
         Seq(
-          "distributive distribute identity" -> forAll(laws.distributeIdentity[A, B] _),
-          "distributive identity" -> forAll(laws.cosequenceIdentity[A] _),
-          "distributive composition" -> forAll(laws.composition[A, B, C, X, Y] _),
-          "distributive double cosequence identity" -> forAll(laws.cosequenceTwiceIsId[A, Y] _)
+          "distributive distribute identity" -> forAll(laws.distributeIdentity[A, B]),
+          "distributive identity" -> forAll(laws.cosequenceIdentity[A]),
+          "distributive composition" -> forAll(laws.composition[A, B, C, X, Y]),
+          "distributive double cosequence identity" -> forAll(laws.cosequenceTwiceIsId[A, Y])
         )
     }
 }

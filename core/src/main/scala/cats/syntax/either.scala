@@ -122,7 +122,7 @@ final class EitherOps[A, B](private val eab: Either[A, B]) extends AnyVal {
       case Right(b) => if (f(b)) eab else Left(onFailure(b))
     }
 
-  def toIor: A Ior B = Ior.fromEither(eab)
+  def toIor: A `Ior` B = Ior.fromEither(eab)
 
   @deprecated("Included in the standard library", "2.1.0-RC1")
   private[syntax] def toOption: Option[B] =

@@ -38,7 +38,7 @@ trait OptionInstances extends cats.kernel.instances.OptionInstances {
       with CoflatMap[Option]
       with Align[Option] {
 
-      private[this] val someUnit: Option[Unit] = Some(())
+      private val someUnit: Option[Unit] = Some(())
 
       def empty[A]: Option[A] = None
 
@@ -233,7 +233,7 @@ trait OptionInstances extends cats.kernel.instances.OptionInstances {
 
       def functor: Functor[Option] = this
 
-      def align[A, B](fa: Option[A], fb: Option[B]): Option[A Ior B] =
+      def align[A, B](fa: Option[A], fb: Option[B]): Option[A `Ior` B] =
         alignWith(fa, fb)(identity)
 
       override def alignWith[A, B, C](fa: Option[A], fb: Option[B])(f: Ior[A, B] => C): Option[C] =

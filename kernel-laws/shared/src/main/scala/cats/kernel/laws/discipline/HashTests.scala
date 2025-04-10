@@ -38,7 +38,7 @@ trait HashTests[A] extends EqTests[A] {
     new DefaultRuleSet(
       "hash",
       Some(eqv),
-      "hash compatibility" -> forAll(laws.hashCompatibility _)
+      "hash compatibility" -> forAll(laws.hashCompatibility)
     )
 
   @deprecated("use `hash` without `Hashing` parameter", "2.12.1")

@@ -53,14 +53,14 @@ trait StrongTests[F[_, _]] extends ProfunctorTests[F] {
     new DefaultRuleSet(
       name = "strong",
       parent = Some(profunctor[A, B, C, D, E, G]),
-      "first is swapped second" -> forAll(laws.firstIsSwappedSecond[A, B, C] _),
-      "second is swapped first" -> forAll(laws.secondIsSwappedFirst[A, B, D] _),
-      "lmap equals first and then rmap" -> forAll(laws.lmapEqualsFirstAndThenRmap[A, B, C] _),
-      "lmap equals second and then rmap" -> forAll(laws.lmapEqualsSecondAndThenRmap[A, B, C] _),
-      "dinaturality of first" -> forAll(laws.dinaturalityFirst[A, B, C, D] _),
-      "dinaturality of second" -> forAll(laws.dinaturalitySecond[A, B, C, D] _),
-      "first first is dimap" -> forAll(laws.firstFirstIsDimap[A, B, C, D] _),
-      "second second is dimap" -> forAll(laws.secondSecondIsDimap[A, B, C, D] _)
+      "first is swapped second" -> forAll(laws.firstIsSwappedSecond[A, B, C]),
+      "second is swapped first" -> forAll(laws.secondIsSwappedFirst[A, B, D]),
+      "lmap equals first and then rmap" -> forAll(laws.lmapEqualsFirstAndThenRmap[A, B, C]),
+      "lmap equals second and then rmap" -> forAll(laws.lmapEqualsSecondAndThenRmap[A, B, C]),
+      "dinaturality of first" -> forAll(laws.dinaturalityFirst[A, B, C, D]),
+      "dinaturality of second" -> forAll(laws.dinaturalitySecond[A, B, C, D]),
+      "first first is dimap" -> forAll(laws.firstFirstIsDimap[A, B, C, D]),
+      "second second is dimap" -> forAll(laws.secondSecondIsDimap[A, B, C, D])
     )
 }
 

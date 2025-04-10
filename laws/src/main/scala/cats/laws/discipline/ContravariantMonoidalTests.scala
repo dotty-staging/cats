@@ -51,13 +51,13 @@ trait ContravariantMonoidalTests[F[_]] extends ContravariantSemigroupalTests[F] 
       val bases: Seq[(String, Laws#RuleSet)] = Seq.empty
       val props = Seq(
         "contravariantMonoidal right unit" ->
-          forAll(laws.contravariantMonoidalUnitRight[A] _),
+          forAll(laws.contravariantMonoidalUnitRight[A]),
         "contravariantMonoidal left unit" ->
-          forAll(laws.contravariantMonoidalUnitLeft[A] _),
+          forAll(laws.contravariantMonoidalUnitLeft[A]),
         "contravariantMonoidal contramap2 compatible contramap left" ->
-          forAll(laws.contravariantMonoidalContramap2CompatibleContramapLeft[A, B, C] _),
+          forAll(laws.contravariantMonoidalContramap2CompatibleContramapLeft[A, B, C]),
         "contravariantMonoidal contramap2 compatible contramap right" ->
-          forAll(laws.contravariantMonoidalContramap2CompatibleContramapRight[A, B, C] _)
+          forAll(laws.contravariantMonoidalContramap2CompatibleContramapRight[A, B, C])
       )
     }
 }

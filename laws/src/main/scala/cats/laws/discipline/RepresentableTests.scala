@@ -42,8 +42,8 @@ trait RepresentableTests[F[_], R] extends Laws {
     new DefaultRuleSet(
       name = "representable",
       parent = None,
-      "index andThen tabulate = id" -> forAll(laws.indexTabulateIsId[A] _),
-      "tabulate andThen index = id" -> forAll(laws.tabulateIndexIsId[A] _)
+      "index andThen tabulate = id" -> forAll(laws.indexTabulateIsId[A]),
+      "tabulate andThen index = id" -> forAll(laws.tabulateIndexIsId[A])
     )
 }
 

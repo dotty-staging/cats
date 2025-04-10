@@ -530,7 +530,7 @@ sealed abstract private[data] class IndexedStateTMonadError[F[_], S, E]
     IndexedStateT(s => F.handleErrorWith(fa.run(s))(e => f(e).run(s)))
 }
 
-private[this] trait IndexedStateTFunctorFilter[F[_], SA, SB] extends FunctorFilter[IndexedStateT[F, SA, SB, *]] {
+private trait IndexedStateTFunctorFilter[F[_], SA, SB] extends FunctorFilter[IndexedStateT[F, SA, SB, *]] {
 
   implicit def F0: Monad[F]
   def FF: FunctorFilter[F]

@@ -130,7 +130,7 @@ trait ShortCircuitingLaws[F[_]] {
     f.invocations.get <-> size
   }
 
-  private[this] class RestrictedFunction[-A, +B](f: A => B, maxInvocationsAllowed: Long, empty: => B) extends (A => B) {
+  private class RestrictedFunction[-A, +B](f: A => B, maxInvocationsAllowed: Long, empty: => B) extends (A => B) {
     val invocations = new AtomicLong(0)
 
     override def apply(v1: A): B =
@@ -140,12 +140,12 @@ trait ShortCircuitingLaws[F[_]] {
         empty
   }
 
-  private[this] val nonShortCircuitingApplicative: Applicative[Option] = new Applicative[Option] {
+  private val nonShortCircuitingApplicative: Applicative[Option] = new Applicative[Option] {
     override def pure[A](a: A): Option[A] = Some(a)
     override def ap[A, B](ff: Option[A => B])(fa: Option[A]): Option[B] = ff.flatMap(f => fa.map(f))
   }
 
-  private[this] val nonShortCircuitingMonoidK: MonoidK[Option] = new MonoidK[Option] {
+  private val nonShortCircuitingMonoidK: MonoidK[Option] = new MonoidK[Option] {
     def empty[A]: Option[A] = None
     def combineK[A](x: Option[A], y: Option[A]): Option[A] = x.orElse(y)
   }

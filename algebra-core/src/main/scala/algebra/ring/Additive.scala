@@ -38,7 +38,7 @@ trait AdditiveSemigroup[@sp(Int, Long, Float, Double) A] extends Any with Serial
     if (n > 0) positiveSumN(a, n)
     else throw new IllegalArgumentException("Illegal non-positive exponent to sumN: %s".format(n))
 
-  protected[this] def positiveSumN(a: A, n: Int): A = {
+  protected def positiveSumN(a: A, n: Int): A = {
     @tailrec def loop(b: A, k: Int, extra: A): A =
       if (k == 1) plus(b, extra)
       else {

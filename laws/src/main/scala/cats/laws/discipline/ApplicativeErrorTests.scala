@@ -60,36 +60,36 @@ trait ApplicativeErrorTests[F[_], E] extends ApplicativeTests[F] {
       def parents: Seq[RuleSet] = Seq(applicative[A, B, C])
       def props: Seq[(String, Prop)] =
         Seq(
-          "applicativeError handleWith" -> forAll(laws.applicativeErrorHandleWith[A] _),
-          "applicativeError handle" -> forAll(laws.applicativeErrorHandle[A] _),
-          "applicativeError handleErrorWith pure" -> forAll(laws.handleErrorWithPure[A] _),
-          "applicativeError handleError pure" -> forAll(laws.handleErrorPure[A] _),
-          "applicativeError raiseError attempt" -> forAll(laws.raiseErrorAttempt _),
-          "applicativeError pure attempt" -> forAll(laws.pureAttempt[A] _),
+          "applicativeError handleWith" -> forAll(laws.applicativeErrorHandleWith[A]),
+          "applicativeError handle" -> forAll(laws.applicativeErrorHandle[A]),
+          "applicativeError handleErrorWith pure" -> forAll(laws.handleErrorWithPure[A]),
+          "applicativeError handleError pure" -> forAll(laws.handleErrorPure[A]),
+          "applicativeError raiseError attempt" -> forAll(laws.raiseErrorAttempt),
+          "applicativeError pure attempt" -> forAll(laws.pureAttempt[A]),
           "applicativeError handleErrorWith consistent with recoverWith" -> forAll(
-            laws.handleErrorWithConsistentWithRecoverWith[A] _
+            laws.handleErrorWithConsistentWithRecoverWith[A]
           ),
-          "applicativeError handleError consistent with recover" -> forAll(laws.handleErrorConsistentWithRecover[A] _),
-          "applicativeError recover consistent with recoverWith" -> forAll(laws.recoverConsistentWithRecoverWith[A] _),
-          "applicativeError attempt consistent with attemptT" -> forAll(laws.attemptConsistentWithAttemptT[A] _),
+          "applicativeError handleError consistent with recover" -> forAll(laws.handleErrorConsistentWithRecover[A]),
+          "applicativeError recover consistent with recoverWith" -> forAll(laws.recoverConsistentWithRecoverWith[A]),
+          "applicativeError attempt consistent with attemptT" -> forAll(laws.attemptConsistentWithAttemptT[A]),
           "applicativeError attempt fromEither consistent with pure" -> forAll(
-            laws.attemptFromEitherConsistentWithPure[A] _
+            laws.attemptFromEitherConsistentWithPure[A]
           ),
           "applicativeError voidError consistent with void+handleError" -> forAll { (a: A) =>
             // Should be an implicit parameter but that is not a binary-compatible change
             implicit val eqFUnit: Eq[F[Unit]] = makeEqFUnit[A](a)
-            forAll(laws.voidErrorConsistentWithHandleError _)
+            forAll(laws.voidErrorConsistentWithHandleError)
           },
-          "applicativeError onError pure" -> forAll(laws.onErrorPure[A] _),
-          "applicativeError onError raise" -> forAll(laws.onErrorRaise[A] _),
-          "applicativeError adaptError pure" -> forAll(laws.adaptErrorPure[A] _),
-          "applicativeError adaptError raise" -> forAll(laws.adaptErrorRaise[A] _),
-          "applicativeError redeem is derived from attempt and map" -> forAll(laws.redeemDerivedFromAttemptMap[A, B] _),
+          "applicativeError onError pure" -> forAll(laws.onErrorPure[A]),
+          "applicativeError onError raise" -> forAll(laws.onErrorRaise[A]),
+          "applicativeError adaptError pure" -> forAll(laws.adaptErrorPure[A]),
+          "applicativeError adaptError raise" -> forAll(laws.adaptErrorRaise[A]),
+          "applicativeError redeem is derived from attempt and map" -> forAll(laws.redeemDerivedFromAttemptMap[A, B]),
           "applicativeError handleError . raiseError left-distributes over ap" -> forAll(
-            laws.raiseErrorDistributesOverApLeft[A] _
+            laws.raiseErrorDistributesOverApLeft[A]
           ),
           "applicativeError handleError . raiseError right-distributes over ap" -> forAll(
-            laws.raiseErrorDistributesOverApRight[A] _
+            laws.raiseErrorDistributesOverApRight[A]
           )
         )
     }

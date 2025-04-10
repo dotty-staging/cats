@@ -42,7 +42,7 @@ trait AlignLaws[F[_]] {
   def alignHomomorphism[A, B, C, D](fa: F[A], fb: F[B], f: A => C, g: B => D): IsEq[F[Ior[C, D]]] =
     fa.map(f).align(fb.map(g)) <-> fa.align(fb).map(_.bimap(f, g))
 
-  def alignWithConsistent[A, B, C](fa: F[A], fb: F[B], f: A Ior B => C): IsEq[F[C]] =
+  def alignWithConsistent[A, B, C](fa: F[A], fb: F[B], f: A `Ior` B => C): IsEq[F[C]] =
     fa.alignWith(fb)(f) <-> fa.align(fb).map(f)
 
   def alignMergeWithConsistent[A](fa1: F[A], fa2: F[A], f: (A, A) => A): IsEq[F[A]] =

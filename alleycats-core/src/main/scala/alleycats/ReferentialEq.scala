@@ -32,7 +32,7 @@ trait ReferentialEq[A <: AnyRef] extends Eq[A] {
 }
 
 object ReferentialEq {
-  private[this] val referentialEq: Eq[AnyRef] = new ReferentialEq[AnyRef] {}
+  private val referentialEq: Eq[AnyRef] = new ReferentialEq[AnyRef] {}
 
   def apply[A <: AnyRef]: Eq[A] = referentialEq.asInstanceOf[Eq[A]]
 }

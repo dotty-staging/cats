@@ -28,7 +28,7 @@ import scala.{specialized => sp}
  * (i.e. combine) is also idempotent.
  */
 trait Band[@sp(Int, Long, Float, Double) A] extends Any with Semigroup[A] {
-  override protected[this] def repeatedCombineN(a: A, n: Int): A =
+  override protected def repeatedCombineN(a: A, n: Int): A =
     a // combine(a, a) == a
 }
 

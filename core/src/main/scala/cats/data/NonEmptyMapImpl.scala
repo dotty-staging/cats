@@ -60,7 +60,7 @@ object NonEmptyMapImpl extends NonEmptyMapInstances with Newtype2 {
     create(SortedMap(head)(K.toOrdering) ++ tail)
 
   def of[K, A](a: (K, A), as: (K, A)*)(implicit K: Order[K]): NonEmptyMap[K, A] =
-    create(SortedMap(as: _*)(K.toOrdering) + a)
+    create(SortedMap(as*)(K.toOrdering) + a)
 
   def one[K, A](k: K, a: A)(implicit K: Order[K]): NonEmptyMap[K, A] =
     create(SortedMap((k, a))(K.toOrdering))

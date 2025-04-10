@@ -46,10 +46,10 @@ trait CoflatMapTests[F[_]] extends Laws with FunctorTests[F] {
     new DefaultRuleSet(
       name = "coflatMap",
       parent = Some(functor[A, B, C]),
-      "coflatMap associativity" -> forAll(laws.coflatMapAssociativity[A, B, C] _),
-      "coflatMap identity" -> forAll(laws.coflatMapIdentity[A, B] _),
-      "coflatten coherence" -> forAll(laws.coflattenCoherence[A, B] _),
-      "coflatten throughMap" -> forAll(laws.coflattenThroughMap[A] _)
+      "coflatMap associativity" -> forAll(laws.coflatMapAssociativity[A, B, C]),
+      "coflatMap identity" -> forAll(laws.coflatMapIdentity[A, B]),
+      "coflatten coherence" -> forAll(laws.coflattenCoherence[A, B]),
+      "coflatten throughMap" -> forAll(laws.coflattenThroughMap[A])
     )
 }
 

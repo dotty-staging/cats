@@ -51,12 +51,12 @@ trait ApplicativeTests[F[_]] extends ApplyTests[F] {
     new DefaultRuleSet(
       name = "applicative",
       parent = Some(apply[A, B, C]),
-      "applicative identity" -> forAll(laws.applicativeIdentity[A] _),
-      "applicative homomorphism" -> forAll(laws.applicativeHomomorphism[A, B] _),
-      "applicative interchange" -> forAll(laws.applicativeInterchange[A, B] _),
-      "applicative map" -> forAll(laws.applicativeMap[A, B] _),
-      "applicative unit" -> forAll(laws.applicativeUnit[A] _),
-      "ap consistent with product + map" -> forAll(laws.apProductConsistent[A, B] _),
+      "applicative identity" -> forAll(laws.applicativeIdentity[A]),
+      "applicative homomorphism" -> forAll(laws.applicativeHomomorphism[A, B]),
+      "applicative interchange" -> forAll(laws.applicativeInterchange[A, B]),
+      "applicative map" -> forAll(laws.applicativeMap[A, B]),
+      "applicative unit" -> forAll(laws.applicativeUnit[A]),
+      "ap consistent with product + map" -> forAll(laws.apProductConsistent[A, B]),
       "replicateA_ consistent with replicateA.void" -> forAll { (a: A) =>
         // Should be an implicit parameter but that is not a binary-compatible change
         implicit val eqFUnit: Eq[F[Unit]] = makeEqFUnit[A](a)
