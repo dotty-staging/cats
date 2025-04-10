@@ -49,7 +49,7 @@ class RepresentableStoreTSuite extends CatsSuite {
     Eq[StoreT[Id, MiniInt, StoreT[Id, MiniInt, StoreT[Id, MiniInt, Int]]]]
 
   checkAll("StoreT[Id, MiniInt, *]",
-           ComonadTests[StoreT[Id, MiniInt, *]].comonad[Int, Int, Int](
+           ComonadTests[StoreT[Id, MiniInt, *]].comonad[Int, Int, Int](using 
              a,
              b,
              a,

@@ -141,7 +141,7 @@ class FunctionSuite extends CatsSuite {
   // Test for Arrow applicative
   Applicative[String => *]
   checkAll("Function1[MiniInt, *]",
-           ApplicativeTests[Function1[MiniInt, *]](Applicative.catsApplicativeForArrow[Function1, MiniInt])
+           ApplicativeTests[Function1[MiniInt, *]](using Applicative.catsApplicativeForArrow[Function1, MiniInt])
              .applicative[Int, Int, Int]
   )
 
