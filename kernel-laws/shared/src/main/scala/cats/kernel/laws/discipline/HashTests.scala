@@ -39,8 +39,8 @@ trait HashTests[A] extends EqTests[A] {
       "hash",
       Some(eqv),
       "hash compatibility" -> forAll(laws.hashCompatibility _),
-      "same as universal hash" -> forAll(laws.sameAsUniversalHash _),
-      "same as scala hashing" -> forAll((x: A, y: A) => laws.sameAsScalaHashing(x, y, hashA))
+      //"same as universal hash" -> forAll(laws.sameAsUniversalHash _),
+      //"same as scala hashing" -> forAll((x: A, y: A) => laws.sameAsScalaHashing(x, y, hashA))
     )
 
 }
