@@ -51,7 +51,7 @@ object SerializableLaws {
 
         val baos = new ByteArrayOutputStream()
         val oos = new ObjectOutputStream(baos)
-        var ois: ObjectInputStream = null
+        var ois: ObjectInputStream | Null = null
         try {
           oos.writeObject(a)
           oos.close()

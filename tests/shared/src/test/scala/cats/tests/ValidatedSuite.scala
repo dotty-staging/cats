@@ -123,12 +123,12 @@ class ValidatedSuite extends CatsSuite {
   }
 
   test("catchOnly catches matching exceptions") {
-    assert(Validated.catchOnly[NumberFormatException]("foo".toInt).isInstanceOf[Invalid[NumberFormatException]])
+    assert(Validated.catchOnly[NumberFormatException | Null]("foo".toInt).isInstanceOf[Invalid[NumberFormatException]])
   }
 
   test("catchOnly lets non-matching exceptions escape") {
     val _ = intercept[NumberFormatException] {
-      Validated.catchOnly[IndexOutOfBoundsException]("foo".toInt)
+      Validated.catchOnly[IndexOutOfBoundsException | Null]("foo".toInt)
     }
   }
 

@@ -125,7 +125,7 @@ class EitherSuite extends CatsSuite {
 
   test("catchOnly lets non-matching exceptions escape") {
     val _ = intercept[NumberFormatException] {
-      Either.catchOnly[IndexOutOfBoundsException]("foo".toInt)
+      Either.catchOnly[IndexOutOfBoundsException | Null]("foo".toInt)
     }
   }
 

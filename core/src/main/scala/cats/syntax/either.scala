@@ -383,7 +383,7 @@ final class EitherObjectOps(private val either: Either.type) extends AnyVal {
    * res0: Either[NumberFormatException, Int] = Left(java.lang.NumberFormatException: For input string: "foo")
    * }}}
    */
-  def catchOnly[T >: Null <: Throwable]: CatchOnlyPartiallyApplied[T] =
+  def catchOnly[T >: Null <: Throwable | Null]: CatchOnlyPartiallyApplied[T] =
     new CatchOnlyPartiallyApplied[T]
 
   def catchNonFatal[A](f: => A): Either[Throwable, A] =
