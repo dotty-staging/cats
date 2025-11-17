@@ -82,7 +82,7 @@ trait SortedMapInstances extends SortedMapInstances2 {
         fa: SortedMap[K, A],
         fb: Eval[SortedMap[K, B]]
       )(f: (A, B) => Z): Eval[SortedMap[K, Z]] =
-        if (fa.isEmpty) Eval.now(SortedMap.empty(fa.ordering)) // no need to evaluate fb
+        if (fa.isEmpty) Eval.now(SortedMap.empty(using fa.ordering)) // no need to evaluate fb
         else fb.map(fb => map2(fa, fb)(f))
 
       override def ap2[A, B, Z](f: SortedMap[K, (A, B) => Z])(
@@ -103,7 +103,7 @@ trait SortedMapInstances extends SortedMapInstances2 {
 
       def tailRecM[A, B](a: A)(f: A => SortedMap[K, Either[A, B]]): SortedMap[K, B] = {
         val fa = f(a)
-        var bldr = SortedMap.newBuilder[K, B](fa.ordering)
+        var bldr = SortedMap.newBuilder[K, B](using fa.ordering)
 
         @tailrec def descend(k: K, either: Either[A, B]): Unit =
           either match {
@@ -156,7 +156,7 @@ trait SortedMapInstances extends SortedMapInstances2 {
 
       override def alignWith[A, B, C](fa: SortedMap[K, A], fb: SortedMap[K, B])(f: Ior[A, B] => C): SortedMap[K, C] = {
         val keys = fa.keySet ++ fb.keySet
-        val builder = SortedMap.newBuilder[K, C](fa.ordering)
+        val builder = SortedMap.newBuilder[K, C](using fa.ordering)
         builder.sizeHint(keys.size)
         keys
           .foldLeft(builder) { (builder, k) =>
@@ -275,7 +275,7 @@ private[instances] trait SortedMapInstancesBinCompat1 {
 
   implicit def catsStdMonoidKForSortedMap[K: Order]: MonoidK[SortedMap[K, *]] =
     new MonoidK[SortedMap[K, *]] {
-      override def empty[A]: SortedMap[K, A] = SortedMap.empty[K, A](Order[K].toOrdering)
+      override def empty[A]: SortedMap[K, A] = SortedMap.empty[K, A](using Order[K].toOrdering)
       override def combineK[A](x: SortedMap[K, A], y: SortedMap[K, A]): SortedMap[K, A] = x ++ y
     }
 }
