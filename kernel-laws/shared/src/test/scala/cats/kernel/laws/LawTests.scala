@@ -473,7 +473,7 @@ class Tests extends TestsConfig with DisciplineSuite {
           .forall { case (x, y) => a.eqv(x, y) == b.eqv(x, y) }
     }
 
-    implicit val monoidOrderN: Monoid[Order[N]] with Band[Order[N]] = Order.whenEqualMonoid[N]
+    implicit val monoidOrderN: Monoid[Order[N]] & Band[Order[N]] = Order.whenEqualMonoid[N]
     checkAll("Monoid[Order[N]]", MonoidTests[Order[N]].monoid)
     checkAll("Band[Order[N]]", BandTests[Order[N]].band)
 

@@ -34,7 +34,7 @@ import cats.data.Ior
 
 trait VectorInstances extends cats.kernel.instances.VectorInstances {
   implicit val catsStdInstancesForVector
-    : Traverse[Vector] with Monad[Vector] with Alternative[Vector] with CoflatMap[Vector] with Align[Vector] =
+    : Traverse[Vector] & Monad[Vector] & Alternative[Vector] & CoflatMap[Vector] & Align[Vector] =
     new Traverse[Vector] with Monad[Vector] with Alternative[Vector] with CoflatMap[Vector] with Align[Vector] {
 
       def empty[A]: Vector[A] = Vector.empty[A]

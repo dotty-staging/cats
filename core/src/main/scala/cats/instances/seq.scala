@@ -33,7 +33,7 @@ import scala.collection.immutable.Seq
 @suppressUnusedImportWarningForScalaVersionSpecific
 trait SeqInstances extends cats.kernel.instances.SeqInstances {
   implicit val catsStdInstancesForSeq
-    : Traverse[Seq] with Monad[Seq] with Alternative[Seq] with CoflatMap[Seq] with Align[Seq] =
+    : Traverse[Seq] & Monad[Seq] & Alternative[Seq] & CoflatMap[Seq] & Align[Seq] =
     new Traverse[Seq] with Monad[Seq] with Alternative[Seq] with CoflatMap[Seq] with Align[Seq] {
 
       def empty[A]: Seq[A] = Seq.empty[A]

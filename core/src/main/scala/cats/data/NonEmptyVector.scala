@@ -379,9 +379,9 @@ sealed abstract private[data] class NonEmptyVectorInstances {
    * Also see the discussion: PR #3541 and issue #3069.
    */
   implicit val catsDataInstancesForNonEmptyVector: SemigroupK[NonEmptyVector]
-    with Bimonad[NonEmptyVector]
-    with NonEmptyTraverse[NonEmptyVector]
-    with Align[NonEmptyVector] =
+    & Bimonad[NonEmptyVector]
+    & NonEmptyTraverse[NonEmptyVector]
+    & Align[NonEmptyVector] =
     new NonEmptyReducible[NonEmptyVector, Vector]
       with SemigroupK[NonEmptyVector]
       with Bimonad[NonEmptyVector]

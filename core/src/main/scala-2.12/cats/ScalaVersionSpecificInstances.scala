@@ -45,7 +45,7 @@ private[cats] trait ScalaVersionSpecificParallelInstances {
 }
 
 private[cats] trait ScalaVersionSpecificInvariantInstances {
-  implicit def catsInstancesForStream: Monad[Stream] with Alternative[Stream] with CoflatMap[Stream] =
+  implicit def catsInstancesForStream: Monad[Stream] & Alternative[Stream] & CoflatMap[Stream] =
     cats.instances.stream.catsStdInstancesForStream
 }
 

@@ -34,7 +34,7 @@ import scala.util.Try
 trait QueueInstances extends cats.kernel.instances.QueueInstances {
 
   implicit val catsStdInstancesForQueue
-    : Traverse[Queue] with Alternative[Queue] with Monad[Queue] with CoflatMap[Queue] =
+    : Traverse[Queue] & Alternative[Queue] & Monad[Queue] & CoflatMap[Queue] =
     new Traverse[Queue] with Alternative[Queue] with Monad[Queue] with CoflatMap[Queue] {
       def empty[A]: Queue[A] = Queue.empty
 

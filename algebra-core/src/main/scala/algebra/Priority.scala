@@ -44,7 +44,7 @@ sealed trait Priority[+P, +F] {
       case Fallback(y)  => f2(y)
     }
 
-  def join[U >: P with F]: U =
+  def join[U >: P & F]: U =
     fold(_.asInstanceOf[U])(_.asInstanceOf[U])
 
   def bimap[P2, F2](f1: P => P2)(f2: F => F2): Priority[P2, F2] =

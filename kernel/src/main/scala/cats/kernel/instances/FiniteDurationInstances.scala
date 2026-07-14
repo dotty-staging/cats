@@ -28,9 +28,9 @@ import scala.concurrent.duration.{Duration, FiniteDuration}
 
 trait FiniteDurationInstances {
   implicit val catsKernelStdOrderForFiniteDuration: Order[FiniteDuration]
-    with Hash[FiniteDuration]
-    with LowerBounded[FiniteDuration]
-    with UpperBounded[FiniteDuration] = new FiniteDurationOrder
+    & Hash[FiniteDuration]
+    & LowerBounded[FiniteDuration]
+    & UpperBounded[FiniteDuration] = new FiniteDurationOrder
   implicit val catsKernelStdGroupForFiniteDuration: CommutativeGroup[FiniteDuration] = new FiniteDurationGroup
 }
 

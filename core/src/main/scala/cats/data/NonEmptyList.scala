@@ -741,7 +741,7 @@ sealed abstract private[data] class NonEmptyListInstances extends NonEmptyListIn
    * Also see the discussion: PR #3541 and issue #3069.
    */
   implicit val catsDataInstancesForNonEmptyList
-    : SemigroupK[NonEmptyList] with Bimonad[NonEmptyList] with NonEmptyTraverse[NonEmptyList] with Align[NonEmptyList] =
+    : SemigroupK[NonEmptyList] & Bimonad[NonEmptyList] & NonEmptyTraverse[NonEmptyList] & Align[NonEmptyList] =
     new NonEmptyReducible[NonEmptyList, List]
       with SemigroupK[NonEmptyList]
       with Bimonad[NonEmptyList]

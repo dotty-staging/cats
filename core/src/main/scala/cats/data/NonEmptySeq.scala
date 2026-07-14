@@ -381,7 +381,7 @@ sealed abstract private[data] class NonEmptySeqInstances {
    * Also see the discussion: PR #3541 and issue #3069.
    */
   implicit val catsDataInstancesForNonEmptySeq
-    : SemigroupK[NonEmptySeq] with Bimonad[NonEmptySeq] with NonEmptyTraverse[NonEmptySeq] with Align[NonEmptySeq] =
+    : SemigroupK[NonEmptySeq] & Bimonad[NonEmptySeq] & NonEmptyTraverse[NonEmptySeq] & Align[NonEmptySeq] =
     new NonEmptyReducible[NonEmptySeq, Seq]
       with SemigroupK[NonEmptySeq]
       with Bimonad[NonEmptySeq]
